@@ -165,6 +165,26 @@ class ListScreen extends Component {
         }
 
         return (
+            // left col = small tool bar, control list
+            // middle = wireframe
+            // right col = control properties (current)
+            <div className="edit_container row blue">
+                <div className="edit_options col s3 white">
+                    <div className="edit_toolbar row red">
+                        tool
+                    </div>
+                    <div className="control_list row brown">
+                        list
+                    </div>
+                </div>
+                <div className="edit_wireframe col s6 green">
+                    sand box
+                </div>
+                <div className="edit_control_properties col s3 yellow">
+                    properties
+                </div>
+            </div>
+            /*
             <div className="list_container container white">
                 <div className="list_screen_header row">
                     <div className="list_screen_title grey-text text-darken-3 col">Todo List</div>
@@ -206,6 +226,7 @@ class ListScreen extends Component {
                 </div>
 
             </div>
+            */
         );
     }
 }
