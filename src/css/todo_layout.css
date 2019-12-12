@@ -125,6 +125,20 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   font-size: 2.2rem !important;
 }
 
-.edit_container, .edit_options, .edit_wireframe, .edit_control_properties{
+/* wire framer */
+
+.edit_container, .edit_options_right, .edit_options_left, .edit_wireframe {
   height: 80vh;
+}
+
+.edit_name, .control_list, .edit_toolbar, .edit_control_properties {
+  margin-bottom: 0px;
+}
+
+.edit_name, .edit_toolbar {
+  height: 7%;
+}
+
+.control_list, .edit_control_properties {
+  height: 93%;
 }

@@ -168,10 +168,10 @@ class ListScreen extends Component {
             // left col = small tool bar, control list
             // middle = wireframe
             // right col = control properties (current)
-            <div className="edit_container row blue">
-                <div className="edit_options col s3 white">
-                    <div className="edit_toolbar row red">
-                        tool
+            <div className="edit_container row">
+                <div className="edit_options_left col s3">
+                    <div className="edit_name row red">
+                        name
                     </div>
                     <div className="control_list row brown">
                         list
@@ -180,8 +180,13 @@ class ListScreen extends Component {
                 <div className="edit_wireframe col s6 green">
                     sand box
                 </div>
-                <div className="edit_control_properties col s3 yellow">
-                    properties
+                <div className="edit_options_right col s3">
+                    <div className="edit_toolbar row red">
+                        tool
+                    </div>
+                    <div className="edit_control_properties row purple">
+                        properties
+                    </div>
                 </div>
             </div>
             /*
