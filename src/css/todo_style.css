@@ -1,0 +1,81 @@
+:root {
+  /* 
+      FIRST WE'LL DEFINE OUR SWATCHES, i.e. THE COMPLEMENTARY
+      COLORS THAT WE'LL USE TOGETHER IN MULTIPLE PLACES THAT
+      TOGETHER WILL MAKE UP A GIVEN THEME
+  */
+  --swatch-foundation:    #dde3e7; /* USED FOR BODY BACKGROUND */
+  --swatch-primary:       #E6E6E6; /* DOMINANT COLOR, USED FOR MOST BACKGROUNDS */
+  --swatch-complement:    #E1E4CB; /* USED IN FORGROUND OF PRIMARY FOR TEXT AND BORDERS */
+  --swatch_contrast:      #111111; /* USED IN MOUSE-OVER SELECTION OF LARGE ELEMENTS */
+  --swatch-accent:        #669966; /* USED IN MOUSE-OVER SELECTION OF TEXT AND BORDERS */    
+  --my-font-family:          "Robaaaoto";
+  --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+}
+
+body {
+  background-color: var(--swatch-foundation);
+  font-family: 'Helvetica';
+}
+
+div.banner {
+  background-image: linear-gradient(to bottom,         
+  #00b0ff, #26a69a);
+  color: white;
+  font-size: 48pt;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  padding-left: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.home_new_list_button {
+  font-size: 32pt;
+}
+.home_new_list_button:hover {
+  box-shadow: 1px 2px;
+}
+
+.list_screen_header {
+  font-size: 30px;
+}
+
+.list_item_card {
+  font-size: 20px;
+}
+
+.list_item_card_title {
+  font-size: 24px !important;
+}
+
+#name, #name_prompt, #owner, #owner_prompt, #description_prompt, #description, 
+#assigned_to_prompt, #assigned_to, #due_date_prompt, #due_date {
+  font-size: 24px;
+}
+
+.list_input, .item_input{
+  font-size: 40px;
+}
+
+.card_headers {
+  padding-left: 30px;
+}
+
+.card_headers {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  background-color: #607d8b;
+}
+
+.clickable_sort, #completed {
+  cursor: pointer;
+}
+
+#completed_prompt {
+  cursor: text;
+  font-size: 18px;
+}

@@ -1,0 +1,126 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+}
+
+body {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  top: 5%;
+}
+
+div.banner {
+  padding: 20px;
+  margin-top: 60px;
+}
+
+form {
+  padding: 20px;
+  margin-top: 60px;
+}
+
+form button, form h5 {
+  margin: 20px 0;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+  border-color: #ec407a;
+  box-shadow: none;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label{
+  color: #ec407a !important;
+}
+
+.list_container {
+  padding-bottom: 30px;
+}
+
+.list_screen_title, #item_heading {
+  width: 50%;
+  padding-top: 25px !important;
+  padding-bottom: 10px !important;
+}
+
+.list_screen_header {
+  padding-top: 15px;
+  padding-left: 24px;
+}
+
+.list_input, .item_input, #item_heading {
+  padding-left: 35.25px;
+  padding-right: 35.25px;
+ }
+
+ .item_input {
+   padding-bottom: 70px;
+ }
+
+.delete_list_modal{
+  overflow-y: hidden;
+  width: 40%;
+}
+
+.delete_list_modal_content {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.delete_list_modal_footer{
+  padding-right: 20px;
+}
+
+.confirm_delete_button {
+  margin-right: 20px !important;
+}
+
+.input-field{
+  margin-bottom: 30px;
+}
+
+.card_headers {
+  padding: 10px 24px !important;
+  margin: 0px;
+}
+
+.fixed-action-btn {
+  position: relative;
+  float: right;
+  top: 5px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+}
+
+.item_screen_buttons {
+  float: right;
+}
+
+.list_item_add_card {
+  text-align: center;
+}
+
+.item_add_btn {
+  height: 45px;
+  line-height: 45px;
+}
+
+.add_icon {
+  font-size: 2.2rem !important;
+}
