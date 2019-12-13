@@ -49,7 +49,6 @@ class EditScreen extends Component {
             width: wireframe.width + "px",
             position: "relative"
         }}>
-            {wireframe.width}x{wireframe.height}
             {this.initializeItems()}
         </div>
     }
@@ -119,7 +118,7 @@ class EditScreen extends Component {
                         list
                     </div>
                 </div>
-                <div className="edit_wireframe col s8 green">
+                <div className="edit_wireframe col s8 white">
                     {this.initializeWireframe()}
                 </div>
                 <div className="edit_options_right col s2">

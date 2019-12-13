@@ -117,28 +117,28 @@
                     "type": "label",
                     "text": "Questions about Things",
                     "font-size": 30,
-                    "background-color": "white",
+                    "background-color": "",
                     "font-color": "purple",
-                    "border-color": "white",
+                    "border-color": "",
                     "border-thickness": 0,
                     "border-radius": 0, 
                     "width": 200,
                     "height": 100,
                     "posX": 100,
-                    "posY": 10
+                    "posY": 100
                 },
                 {
                     "key": 1,
                     "type": "container",
-                    "text": "",
-                    "font-size": 10,
-                    "background-color": "white",
+                    "text": "navbar",
+                    "font-size": 12,
+                    "background-color": "gray",
                     "font-color": "black",
                     "border-color": "blue",
                     "border-thickness": 1,
                     "border-radius": 0, 
-                    "width": 300,
-                    "height": 300,
+                    "width": 390,
+                    "height": 30,
                     "posX": 0,
                     "posY": 0
                 },
@@ -147,30 +147,30 @@
                     "type": "textfield",
                     "text": "How are you today?",
                     "font-size": 20,
-                    "background-color": "white",
+                    "background-color": "pink",
                     "font-color": "purple",
-                    "border-color": "white",
+                    "border-color": "blue",
                     "border-thickness": 1,
                     "border-radius": 0, 
-                    "width": 100,
+                    "width": 200,
                     "height": 50,
                     "posX": 100,
-                    "posY": 100
+                    "posY": 200
                 },
                 {
                     "key": 3,
                     "type": "textfield",
                     "text": "Do you like puppies?",
                     "font-size": 20,
-                    "background-color": "white",
+                    "background-color": "pink",
                     "font-color": "purple",
-                    "border-color": "white",
+                    "border-color": "blue",
                     "border-thickness": 1,
                     "border-radius": 0, 
-                    "width": 100,
+                    "width": 200,
                     "height": 50,
                     "posX": 100,
-                    "posY": 200
+                    "posY": 300
                 },
                 {
                     "key": 4,
@@ -184,8 +184,8 @@
                     "border-radius": 0, 
                     "width": 80,
                     "height": 50,
-                    "posX": 100,
-                    "posY": 300
+                    "posX": 200,
+                    "posY": 400
                 }
             ]
         },
@@ -200,15 +200,15 @@
                     "key": 0,
                     "type": "label",
                     "text": "Thank you for volunteering",
-                    "font-size": 20,
-                    "background-color": "white",
-                    "font-color": "black",
-                    "border-color": "white",
-                    "border-thickness": 0,
-                    "border-radius": 0, 
-                    "width": 200,
-                    "height": 100,
-                    "posX": 450,
+                    "font-size": 30,
+                    "background-color": "green",
+                    "font-color": "orange",
+                    "border-color": "grey",
+                    "border-thickness": 1,
+                    "border-radius": 3, 
+                    "width": 500,
+                    "height": 60,
+                    "posX": 50,
                     "posY": 5
                 },
                 {
@@ -221,10 +221,10 @@
                     "border-color": "grey",
                     "border-thickness": 6,
                     "border-radius": 3, 
-                    "width": 200,
-                    "height": 100,
-                    "posX": 450,
-                    "posY": 30
+                    "width": 400,
+                    "height": 40,
+                    "posX": 50,
+                    "posY": 50
                 },
                 {
                     "key": 2,
@@ -236,9 +236,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 120,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 100
                 },
                 {
@@ -251,9 +251,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 120,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 120
                 },
                 {
@@ -266,9 +266,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 120,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 140
                 },
                 {
@@ -281,9 +281,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 120,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 160
                 },
                 {
@@ -296,9 +296,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 120,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 180
                 },
                 {
@@ -311,9 +311,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 120,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 200
                 },
                 {
@@ -326,9 +326,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 120,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 220
                 },
                 {
@@ -341,9 +341,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 80,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 240
                 },
                 {
@@ -356,9 +356,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 80,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 260
                 },
                 {
@@ -371,9 +371,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 80,
+                    "width": 500,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 280
                 },
                 {
@@ -386,9 +386,9 @@
                     "border-color": "black",
                     "border-thickness": 1,
                     "border-radius": 1, 
-                    "width": 40,
+                    "width": 100,
                     "height": 18,
-                    "posX": 450,
+                    "posX": 50,
                     "posY": 300
                 }
             ]
