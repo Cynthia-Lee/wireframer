@@ -10,10 +10,10 @@ class DatabaseTester extends React.Component {
     // TO LOG IN
     handleClear = () => {
         const fireStore = getFirestore();
-        fireStore.collection('wireframeLists').get().then(function(querySnapshot){
+        fireStore.collection('wireframeList').get().then(function(querySnapshot){
             querySnapshot.forEach(function(doc) {
                 console.log("deleting " + doc.id);
-                fireStore.collection('wireframeLists').doc(doc.id).delete();
+                fireStore.collection('wireframeList').doc(doc.id).delete();
             })
         });
     }
@@ -22,8 +22,8 @@ class DatabaseTester extends React.Component {
         const fireStore = getFirestore();
         var currentDate = new Date();
         var timestamp = currentDate.getTime(); // timestamp for most recent list
-        wireframeJson.wireframeLists.forEach(wireframeJson => {
-            fireStore.collection('wireframeLists').add({
+        wireframeJson.wireframeList.forEach(wireframeJson => {
+            fireStore.collection('wireframeList').add({
                     user: wireframeJson.user,
                     name: wireframeJson.name,
                     height: wireframeJson.height,

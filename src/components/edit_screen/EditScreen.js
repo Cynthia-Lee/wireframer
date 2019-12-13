@@ -32,7 +32,7 @@ class ListScreen extends Component {
         }));
         // update the store
         const fireStore = getFirestore();
-        fireStore.collection('wireframeLists').doc(this.props.wireframeList.id).update({
+        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
             [target.id]: target.value,
         });
     }
@@ -47,7 +47,7 @@ class ListScreen extends Component {
 
     confirmDeleteList = () => {
         const fireStore = getFirestore();
-        fireStore.collection('wireframeLists').doc(this.props.wireframeList.id).delete();
+        fireStore.collection('wireframeList').doc(this.props.wireframe.id).delete();
         this.props.history.push('/'); // go to home screen
     }
 
@@ -104,12 +104,12 @@ class ListScreen extends Component {
 
     sortList = () => {
         const fireStore = getFirestore();
-        fireStore.collection("wireframeLists").doc(this.props.wireframeList.id).update({
+        fireStore.collection("wireframeList").doc(this.props.wireframe.id).update({
             sortCriteria: this.state.currentItemSortCriteria
         });
         // update the store
-        let itemList = this.props.wireframeList.items.sort(this.compare);
-        fireStore.collection('wireframeLists').doc(this.props.wireframeList.id).update({
+        let itemList = this.props.wireframe.items.sort(this.compare);
+        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
             items: itemList
         });
     }
@@ -161,7 +161,7 @@ class ListScreen extends Component {
 
     render() {
         const auth = this.props.auth;
-        const wireframeList = this.props.wireframeList;
+        const wireframe = this.props.wireframe;
         if (!auth.uid) {
             return <Redirect to="/" />;
         }
@@ -240,12 +240,12 @@ class ListScreen extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     const { id } = ownProps.match.params;
-    const { wireframeLists } = state.firestore.data;
-    const wireframeList = wireframeLists ? wireframeLists[id] : null;
-    wireframeList.id = id;
+    const { wireframeList } = state.firestore.data;
+    const wireframe = wireframeList ? wireframeList[id] : null;
+    wireframe.id = id;
 
     return {
-        wireframeLists,
+        wireframeList,
         auth: state.firebase.auth,
     };
 };
@@ -253,6 +253,6 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'wireframeLists' },
+        { collection: 'wireframeList' },
     ]),
 )(ListScreen);
