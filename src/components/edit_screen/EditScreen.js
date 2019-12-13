@@ -57,10 +57,11 @@ class EditScreen extends Component {
     initializeItems = () => {
         const wireframe = this.props.wireframe;
         var i = 0;
-        //for (i = 0; i < wireframe.items.length; i++) {
-            // console.log(wireframe.items[i]);
-            return this.createItem(wireframe.items[i]);
-        //}
+        var divItems = [];
+        for (i = 0; i < wireframe.items.length; i++) {
+            divItems.push(this.createItem(wireframe.items[i]));
+        }
+        return divItems;
     }
 
     createItem = (data) => {
@@ -91,8 +92,8 @@ class EditScreen extends Component {
             borderWidth: data["border-thickness"],
             borderRadius: data["border-radius"],
             position: "absolute",
-            left: "30px",
-            top: "100px"
+            left: data["posX"],
+            top: data["posY"]
         }}>
             {data["text"]}
         </div>
