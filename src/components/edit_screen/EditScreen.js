@@ -63,7 +63,14 @@ class EditScreen extends Component {
                     </div>
                 </div>
                 <div className="edit_wireframe col s6 green">
-                    sand box
+                    <div className="sandbox_wireframe blue" style={{
+                        height: wireframe.height + "px",
+                        width: wireframe.width + "px"
+                    }}>
+                        sand
+                        {wireframe.height}
+                        {wireframe.width}
+                    </div>
                 </div>
                 <div className="edit_options_right col s3">
                     <div className="edit_toolbar row red">

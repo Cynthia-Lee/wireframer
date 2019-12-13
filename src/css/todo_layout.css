@@ -17,7 +17,7 @@ body {
   position: absolute;
   width: 80%;
   left: 10%;
-  top: 5%;
+  /*top: 5%;*/
 }
 
 div.banner {
@@ -141,4 +141,12 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 .control_list, .edit_control_properties {
   height: 93%;
+}
+
+.edit_wireframe {
+  overflow: auto;
+}
+
+.sandbox_wireframe {
+  margin: auto;
 }
