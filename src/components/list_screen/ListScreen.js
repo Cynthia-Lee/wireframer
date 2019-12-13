@@ -32,20 +32,22 @@ class ListScreen extends Component {
         }));
         // update the store
         const fireStore = getFirestore();
-        fireStore.collection('todoLists').doc(this.props.todoList.id).update({
+        fireStore.collection('wireframeLists').doc(this.props.wireframeList.id).update({
             [target.id]: target.value,
         });
     }
 
+    /*
     addItem = () => {
         var itemList = this.props.todoList.items;
         // var itemKey = this.createItemKey();
         this.props.history.push('/todolist/' + this.props.todoList.id + '/' + itemList.length); // go to new item screen
     }
+    */
 
     confirmDeleteList = () => {
         const fireStore = getFirestore();
-        fireStore.collection('todoLists').doc(this.props.todoList.id).delete();
+        fireStore.collection('wireframeLists').doc(this.props.wireframeList.id).delete();
         this.props.history.push('/'); // go to home screen
     }
 
@@ -102,12 +104,12 @@ class ListScreen extends Component {
 
     sortList = () => {
         const fireStore = getFirestore();
-        fireStore.collection("todoLists").doc(this.props.todoList.id).update({
+        fireStore.collection("wireframeLists").doc(this.props.wireframeList.id).update({
             sortCriteria: this.state.currentItemSortCriteria
         });
         // update the store
-        let itemList = this.props.todoList.items.sort(this.compare);
-        fireStore.collection('todoLists').doc(this.props.todoList.id).update({
+        let itemList = this.props.wireframeList.items.sort(this.compare);
+        fireStore.collection('wireframeLists').doc(this.props.wireframeList.id).update({
             items: itemList
         });
     }
@@ -159,7 +161,7 @@ class ListScreen extends Component {
 
     render() {
         const auth = this.props.auth;
-        const todoList = this.props.todoList;
+        const wireframeList = this.props.wireframeList;
         if (!auth.uid) {
             return <Redirect to="/" />;
         }
@@ -238,12 +240,12 @@ class ListScreen extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     const { id } = ownProps.match.params;
-    const { todoLists } = state.firestore.data;
-    const todoList = todoLists ? todoLists[id] : null;
-    todoList.id = id;
+    const { wireframeLists } = state.firestore.data;
+    const wireframeList = wireframeLists ? wireframeLists[id] : null;
+    wireframeList.id = id;
 
     return {
-        todoList,
+        wireframeLists,
         auth: state.firebase.auth,
     };
 };
@@ -251,6 +253,6 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'todoLists' },
+        { collection: 'wireframeLists' },
     ]),
 )(ListScreen);

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import todoJson from './TestTodoListData.json'
+import wireframeJson from './TestWireframerData.json'
 import { getFirestore } from 'redux-firestore';
 
 class DatabaseTester extends React.Component {
@@ -10,10 +10,10 @@ class DatabaseTester extends React.Component {
     // TO LOG IN
     handleClear = () => {
         const fireStore = getFirestore();
-        fireStore.collection('todoLists').get().then(function(querySnapshot){
+        fireStore.collection('wireframeLists').get().then(function(querySnapshot){
             querySnapshot.forEach(function(doc) {
                 console.log("deleting " + doc.id);
-                fireStore.collection('todoLists').doc(doc.id).delete();
+                fireStore.collection('wireframeLists').doc(doc.id).delete();
             })
         });
     }
@@ -22,11 +22,13 @@ class DatabaseTester extends React.Component {
         const fireStore = getFirestore();
         var currentDate = new Date();
         var timestamp = currentDate.getTime(); // timestamp for most recent list
-        todoJson.todoLists.forEach(todoListJson => {
-            fireStore.collection('todoLists').add({
-                    name: todoListJson.name,
-                    owner: todoListJson.owner,
-                    items: todoListJson.items,
+        wireframeJson.wireframeLists.forEach(wireframeJson => {
+            fireStore.collection('wireframeLists').add({
+                    user: wireframeJson.user,
+                    name: wireframeJson.name,
+                    height: wireframeJson.height,
+                    width: wireframeJson.width,
+                    items: wireframeJson.items,
                     time: timestamp
                 }).then(() => {
                     console.log("DATABASE RESET");

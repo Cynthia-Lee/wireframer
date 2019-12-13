@@ -16,13 +16,15 @@ class HomeScreen extends Component {
         var currentDate = new Date();
         var timestamp = currentDate.getTime();
 
-        fireStore.collection('todoLists').add({
+        fireStore.collection('wireframeLists').add({
             name: "",
             owner: "",
+            width: "",
+            height: "",
             items: [],
             time: timestamp
         }).then(ref => {
-            this.props.history.push('/todolist/' + ref.id); // go to new list screen
+            this.props.history.push('/wireframe/' + ref.id); // go to new list screen
         });
     }
 
@@ -65,6 +67,6 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'todoLists', orderBy: ['time', 'desc'] },
+        { collection: 'wireframeLists', orderBy: ['time', 'desc'] },
     ]),
 )(HomeScreen);

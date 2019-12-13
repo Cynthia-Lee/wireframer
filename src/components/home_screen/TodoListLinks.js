@@ -6,23 +6,23 @@ import TodoListCard from './TodoListCard';
 import { getFirestore } from 'redux-firestore';
 
 class TodoListLinks extends React.Component {
-    updateTime = (todoList) => {
+    updateTime = (wireframeList) => {
         var currentDate = new Date();
         var timestamp = currentDate.getTime();
         const fireStore = getFirestore();
-        fireStore.collection('todoLists').doc(todoList.id).update({
+        fireStore.collection('wireframeLists').doc(wireframeList.id).update({
             time: timestamp
         });
     }
 
     render() {
-        const todoLists = this.props.todoLists;
-        console.log(todoLists);
+        const wireframeLists = this.props.wireframeLists;
+        console.log(wireframeLists);
         return (
             <div className="todo-lists section">
-                {todoLists && todoLists.map(todoList => (
-                    <Link to={'/todoList/' + todoList.id} onClick={() => this.updateTime(todoList)} key={todoList.id}>
-                        <TodoListCard todoList={todoList} />
+                {wireframeLists && wireframeLists.map(wireframeList => (
+                    <Link to={'/wireframeList/' + wireframeList.id} onClick={() => this.updateTime(wireframeList)} key={wireframeList.id}>
+                        <TodoListCard wireframeList={wireframeList} />
                     </Link>
                 ))}
             </div>
@@ -32,7 +32,7 @@ class TodoListLinks extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        todoLists: state.firestore.ordered.todoLists,
+        wireframeLists: state.firestore.ordered.wireframeLists,
         auth: state.firebase.auth,
     };
 };
