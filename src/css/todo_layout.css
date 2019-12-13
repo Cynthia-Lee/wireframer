@@ -149,4 +149,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 .sandbox_wireframe {
   margin: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border-style: solid;
 }

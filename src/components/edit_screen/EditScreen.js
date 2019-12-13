@@ -42,6 +42,62 @@ class EditScreen extends Component {
     }
     */
 
+    initializeWireframe = () => {
+        const wireframe = this.props.wireframe;
+        return <div className="sandbox_wireframe" style={{
+            height: wireframe.height + "px",
+            width: wireframe.width + "px",
+            position: "relative"
+        }}>
+            {wireframe.width}x{wireframe.height}
+            {this.initializeItems()}
+        </div>
+    }
+
+    initializeItems = () => {
+        const wireframe = this.props.wireframe;
+        var i = 0;
+        //for (i = 0; i < wireframe.items.length; i++) {
+            // console.log(wireframe.items[i]);
+            return this.createItem(wireframe.items[i]);
+        //}
+    }
+
+    createItem = (data) => {
+        /*
+            "key": 0,
+            "type": "container",
+            "text": "testing1234",
+            "font-size": 12,
+            "background-color": "blue",
+            "font-color": "red",
+            "border-color": "yellow",
+            "border-thickness": 3,
+            "border-radius": 2, 
+            "width": 100,
+            "height": 300,
+            "posX": 22,
+            "posY": 30
+        */
+        var type = data["type"];
+        return <div className={{type}} style={{
+            height: data["height"] + "px",
+            width: data["width"] + "px",
+            fontSize: data["font-size"] + "px",
+            backgroundColor: data["background-color"],
+            color: data["font-color"],
+            borderStyle: "solid",
+            borderColor: data["border-color"],
+            borderWidth: data["border-thickness"],
+            borderRadius: data["border-radius"],
+            position: "absolute",
+            left: "30px",
+            top: "100px"
+        }}>
+            {data["text"]}
+        </div>
+    }
+
     render() {
         const auth = this.props.auth;
         const wireframe = this.props.wireframe;
@@ -63,14 +119,7 @@ class EditScreen extends Component {
                     </div>
                 </div>
                 <div className="edit_wireframe col s8 green">
-                    <div className="sandbox_wireframe blue" style={{
-                        height: wireframe.height + "px",
-                        width: wireframe.width + "px"
-                    }}>
-                        sand
-                        {wireframe.height}
-                        {wireframe.width}
-                    </div>
+                    {this.initializeWireframe()}
                 </div>
                 <div className="edit_options_right col s2">
                     <div className="edit_toolbar row red">
