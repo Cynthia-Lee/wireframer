@@ -54,15 +54,15 @@ class EditScreen extends Component {
             // middle = wireframe
             // right col = control properties (current)
             <div className="edit_container row">
-                <div className="edit_options_left col s3">
+                <div className="edit_options_left col s2">
                     <div className="edit_name row red">
-                        {wireframe.name}
+                        Name: {wireframe.name}
                     </div>
                     <div className="control_list row brown">
                         list
                     </div>
                 </div>
-                <div className="edit_wireframe col s6 green">
+                <div className="edit_wireframe col s8 green">
                     <div className="sandbox_wireframe blue" style={{
                         height: wireframe.height + "px",
                         width: wireframe.width + "px"
@@ -72,7 +72,7 @@ class EditScreen extends Component {
                         {wireframe.width}
                     </div>
                 </div>
-                <div className="edit_options_right col s3">
+                <div className="edit_options_right col s2">
                     <div className="edit_toolbar row red">
                         tool
                     </div>
