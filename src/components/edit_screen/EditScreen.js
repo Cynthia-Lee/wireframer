@@ -42,12 +42,20 @@ class EditScreen extends Component {
         wireframe.width = this.state.width;
         wireframe.height = this.state.height;
 
-        // update the store
-        const fireStore = getFirestore();
-        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
-            width: wireframe.width,
-            height: wireframe.height
-        });
+        /*
+        Non-integer dimension or integers smaller than 1 or 
+        larger than 5000 should be disregarded and should not update the diagram. 
+        */
+        if (wireframe.width < 1 || wireframe.width > 5000 || wireframe.height < 1 || wireframe.height > 5000) {
+            // invalid, disreguard
+        } else {
+            // update the store
+            const fireStore = getFirestore();
+            fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
+                width: wireframe.width,
+                height: wireframe.height
+            });
+        }
     }
 
     /*
