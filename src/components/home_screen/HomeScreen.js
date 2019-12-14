@@ -8,7 +8,7 @@ import { getFirestore } from 'redux-firestore';
 
 class HomeScreen extends Component {
 
-    handleNewList = () => {
+    handleNewWireframe = () => {
         // adding new list to the firestore
         const fireStore = getFirestore();
 
@@ -43,13 +43,13 @@ class HomeScreen extends Component {
                     <div className="col s8">
                         <div className="banner">
                             @todo<br />
-                            List Maker
+                            Wireframer
                         </div>
 
                         <div className="home_new_list_container">
-                            <button className="home_new_list_button" onClick={this.handleNewList}>
-                                Create a New To Do List
-                                </button>
+                            <button className="home_new_list_button" onClick={this.handleNewWireframe}>
+                                Create a New Wireframe
+                            </button>
                         </div>
                     </div>
                 </div>

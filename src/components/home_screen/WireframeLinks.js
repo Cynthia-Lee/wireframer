@@ -17,10 +17,18 @@ class WireframeLinks extends React.Component {
 
     render() {
         const wireframeList = this.props.wireframeList;
-        console.log(wireframeList);
+        const userId = this.props.auth.uid;
+        // console.log(wireframeList);
+        if (wireframeList) {
+            var userWireframeList = wireframeList.filter(function (w) {
+                return userId == w.user;
+            });
+        }
+        // {wireframeList && wireframeList.map(wireframe => (
+        
         return (
             <div className="todo-lists section">
-                {wireframeList && wireframeList.map(wireframe => (
+                {userWireframeList && userWireframeList.map(wireframe => (
                     <Link to={'/wireframe/' + wireframe.id} onClick={() => this.updateTime(wireframe)} key={wireframe.id}>
                         <WireframeCard wireframe={wireframe} />
                     </Link>

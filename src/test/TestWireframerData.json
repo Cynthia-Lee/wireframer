@@ -3,27 +3,31 @@
         {
             "email": "happycats@gmail.com",
             "password": "meow123",
-            "first-name": "Snowy",
-            "last-name": "Cat"
+            "firstName": "Snowy",
+            "lastName": "Cat",
+            "initials": "SC",
+            "id": ""
         },
         {
             "email": "coolguy@yahoo.com",
             "password": "password",
             "first-name": "Rad",
-            "last-name": "Dood"
+            "last-name": "Dood",
+            "id": ""
         },
         {
             "email": "johndoe@gmail.com",
             "password": "test",
             "first-name": "John",
-            "last-name": "Doe"
+            "last-name": "Doe",
+            "id": ""
         }
     ], 
 
     "wireframeList": [
         {
             "key": 0,
-            "user": 0,
+            "user": "6Ky2ocJRtPW6270wXJbLZAwRamH3",
             "name": "First Wireframer",
             "width": 600,
             "height": 600,
@@ -107,7 +111,7 @@
         },
         {
             "key": 1,
-            "user": 0,
+            "user": "6Ky2ocJRtPW6270wXJbLZAwRamH3",
             "name": "Questionaire",
             "width": 400,
             "height": 700,
