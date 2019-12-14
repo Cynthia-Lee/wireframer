@@ -8,8 +8,10 @@ import { Modal, Button } from 'react-materialize';
 
 class EditScreen extends Component {
     state = {
-        name: '',
-        user: '',
+        name: this.props.wireframe.name,
+        user: this.props.wireframe.user,
+        width: this.props.wireframe.width,
+        height: this.props.wireframe.height
     }
 
     handleChange = (e) => {
@@ -23,6 +25,28 @@ class EditScreen extends Component {
         const fireStore = getFirestore();
         fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
             [target.id]: target.value,
+        });
+    }
+
+    handleState = (e) => {
+        const { target } = e;
+
+        this.setState(state => ({
+            ...state,
+            [target.id]: target.value,
+        }));
+    }
+
+    changeDimensions = () => {
+        const wireframe = this.props.wireframe;
+        wireframe.width = this.state.width;
+        wireframe.height = this.state.height;
+
+        // update the store
+        const fireStore = getFirestore();
+        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
+            width: wireframe.width,
+            height: wireframe.height
         });
     }
 
@@ -118,12 +142,15 @@ class EditScreen extends Component {
                         </div>
                         <div className="input-field edit_size">
                             <label className="active" htmlFor="email" id="size_prompt">Width x Height</label>
-                            <input className="active" type="number" name="width" id="width" onChange={this.handleChange} value={wireframe.width} />
-                            <input className="active" type="number" name="height" id="height" onChange={this.handleChange} value={wireframe.height} />
+                            <input className="active" type="number" name="width" id="width" onChange={this.handleState} value={this.state.width} />
+                            <input className="active" type="number" name="height" id="height" onChange={this.handleState} value={this.state.height} />
+                            <button className="button" onClick={this.changeDimensions}>
+                                Update
+                            </button>
                         </div>
                     </div>
                     <div className="control_list row brown">
-                        list
+                        list of controls
                     </div>
                 </div>
                 <div className="edit_wireframe col s8 white">
