@@ -216,19 +216,21 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 .control_list {
   height: 100%;
-  padding-top: 30px;
-  background-color: blue;
+  padding-top: 10px;
 }
 
 .control_card {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: yellow;
+  margin-top: 40px;
+  margin-bottom: 20px;
   padding: 15px;
+  width: 100%; 
+  text-align: center;
 }
 
 .preview_control {
-  margin-bottom: 10px;
+  display: inline-block; 
+  margin: 0 auto;
+  padding: 3px;
 }
 
 .control_prompt { 

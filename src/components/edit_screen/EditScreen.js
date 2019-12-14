@@ -116,10 +116,16 @@ class EditScreen extends Component {
             "posY": 30
         */
         var type = data["type"];
+        var pad = "";
         // console.log(data["position"]);
         var pos = data["position"] ? data["position"] : "";
         var textAlign = data["textAlign"] ? data["textAlign"] : "";
-        if (type == "button") { textAlign = "center"; }
+        if (type == "button") { 
+            textAlign = "center"; 
+        } else {
+            textAlign = "left";
+        }
+        if (type == "textfield") { pad = "5px"; }
         return <div className={type} style={{
             height: data["height"] + "px",
             width: data["width"] + "px",
@@ -134,7 +140,8 @@ class EditScreen extends Component {
             position: pos, 
             textAlign: textAlign,
             left: data["posX"],
-            top: data["posY"]
+            top: data["posY"],
+            paddingLeft: pad
         }}>
             {data["text"]}
         </div>
