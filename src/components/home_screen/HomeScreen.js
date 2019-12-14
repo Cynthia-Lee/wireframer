@@ -16,11 +16,12 @@ class HomeScreen extends Component {
         var currentDate = new Date();
         var timestamp = currentDate.getTime();
 
+        // "user", "name", "width", "height", items
         fireStore.collection('wireframeList').add({
+            user: this.props.auth.uid,
             name: "",
-            owner: "",
-            width: "",
-            height: "",
+            width: "500",
+            height: "500",
             items: [],
             time: timestamp
         }).then(ref => {
