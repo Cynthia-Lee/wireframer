@@ -12,7 +12,8 @@ class EditScreen extends Component {
         name: this.props.wireframe.name,
         user: this.props.wireframe.user,
         width: this.props.wireframe.width,
-        height: this.props.wireframe.height
+        height: this.props.wireframe.height,
+        disableDimensionChange: true
     }
 
     handleChange = (e) => {
@@ -29,6 +30,7 @@ class EditScreen extends Component {
         });
     }
 
+    /*
     handleState = (e) => {
         const { target } = e;
 
@@ -37,16 +39,46 @@ class EditScreen extends Component {
             [target.id]: target.value,
         }));
     }
+    */
+
+    handleDimensionChange = (e) => {
+        const { target } = e;
+
+        this.setState(state => ({
+            ...state,
+            [target.id]: target.value,
+        }), function () { this.checkDimensions() });
+    }
+
+    checkDimensions = () => {
+        console.log(this.state.width);
+        if (this.state.width < 1 || this.state.width > 5000 || this.state.height < 1 || this.state.height > 5000) {
+            this.setState({
+                disableDimensionChange: true
+            });
+        } else {
+            this.setState({
+                disableDimensionChange: false
+            });
+        }
+    }
 
     changeDimensions = () => {
         const wireframe = this.props.wireframe;
         wireframe.width = this.state.width;
         wireframe.height = this.state.height;
 
+
+        // update the store
+        const fireStore = getFirestore();
+        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
+            width: wireframe.width,
+            height: wireframe.height
+        });
+
         /*
-        Non-integer dimension or integers smaller than 1 or 
-        larger than 5000 should be disregarded and should not update the diagram. 
-        */
+        // Non-integer dimension or integers smaller than 1 or 
+        // larger than 5000 should be disregarded and should not update the diagram. 
         if (wireframe.width < 1 || wireframe.width > 5000 || wireframe.height < 1 || wireframe.height > 5000) {
             // invalid, disreguard
         } else {
@@ -57,15 +89,8 @@ class EditScreen extends Component {
                 height: wireframe.height
             });
         }
+        */
     }
-
-    /*
-    addItem = () => {
-        var itemList = this.props.todoList.items;
-        // var itemKey = this.createItemKey();
-        this.props.history.push('/todolist/' + this.props.todoList.id + '/' + itemList.length); // go to new item screen
-    }
-    */
 
     /*
     confirmDeleteList = () => {
@@ -167,9 +192,9 @@ class EditScreen extends Component {
                         </div>
                         <div className="input-field edit_size">
                             <label className="active" htmlFor="email" id="size_prompt">Width x Height</label>
-                            <input className="active" type="number" name="width" id="width" onChange={this.handleState} value={this.state.width} />
-                            <input className="active" type="number" name="height" id="height" onChange={this.handleState} value={this.state.height} />
-                            <button className="update_dimensions_button button" onClick={this.changeDimensions}>
+                            <input className="active" type="number" name="width" id="width" onChange={this.handleDimensionChange} value={this.state.width} />
+                            <input className="active" type="number" name="height" id="height" onChange={this.handleDimensionChange} value={this.state.height} />
+                            <button className="update_dimensions_button button" onClick={this.changeDimensions} disabled={this.state.disableDimensionChange}>
                                 Update
                             </button>
                         </div>

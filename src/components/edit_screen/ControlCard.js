@@ -71,13 +71,43 @@ class ControlCard extends React.Component {
         return textfield;
     }
 
+    /*
+    addItem = (type) => {
+        var itemList = this.props.wireframe.items;
+        // var itemKey = this.createItemKey();
+        var itemOptions = ["container", "label", "button", "textfield"];
+        var control;
+        if (item == itemOptions[0]) {
+            control = this.props.createItem(this.createContainer());            
+        } else if (item == itemOptions[1]) {
+            control = this.props.createItem(this.createLabel());
+        } else if (item == itemOptions[2]) {
+            control = this.props.createItem(this.createButton());
+        } else if (item == itemOptions[3]) {
+            control = this.props.createItem(this.createTextfield());
+        } else {
+            return "";
+        }
+        
+        itemList.append(control);
+
+        // update the store
+        const fireStore = getFirestore();
+        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
+            items: itemList,
+        });
+    }
+    */
+
     controlCard = (item) => {
         var itemOptions = ["container", "label", "button", "textfield"];
         var control;
-        var prompt;
+        var prompt = "";
+        var addControl = "";
         if (item == itemOptions[0]) {
             control = this.props.createItem(this.createContainer());
             prompt = "Container";
+            
         } else if (item == itemOptions[1]) {
             control = this.props.createItem(this.createLabel());
             prompt = "Label";
@@ -95,6 +125,9 @@ class ControlCard extends React.Component {
                 {control}
             </div>
             <div className="control_prompt">{prompt}</div>
+            <button className="button" onClick={addControl}>
+                Add {prompt}
+            </button>
         </div>
     }
     /*
