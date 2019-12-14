@@ -28,8 +28,8 @@ class ControlCard extends React.Component {
         container["type"] = "container";
         container["border-thickness"] = 2;
         container["background-color"] = "white";
-        container["width"] = 200;
-        container["height"] = 100;
+        container["width"] = 140;
+        container["height"] = 80;
         return container;
     }
 
@@ -38,7 +38,7 @@ class ControlCard extends React.Component {
         label["type"] = "label";
         label["text"] = "Prompt for Input:";
         label["border-thickness"] = 0;
-        label["width"] = 300;
+        label["width"] = 110;
         label["height"] = 24;
         return label;
     }
@@ -47,12 +47,13 @@ class ControlCard extends React.Component {
         var button = this.createControl();
         button["type"] = "button";
         button["text"] = "Submit";
+        // button["textAlign"] = "center";
         button["border-thickness"] = 2;
         button["border-radius"] = 2;
         button["font-size"] = 20;
         button["background-color"] = "grey";
-        button["width"] = 100;
-        button["height"] = 40;
+        button["width"] = 110;
+        button["height"] = 30;
         return button;
     }
 
@@ -65,7 +66,7 @@ class ControlCard extends React.Component {
         textfield["font-size"] = 14;
         textfield["font-color"] = "gray";
         textfield["background-color"] = "white";
-        textfield["width"] = 100;
+        textfield["width"] = 180;
         textfield["height"] = 24;
         return textfield;
     }

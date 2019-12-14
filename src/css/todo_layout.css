@@ -174,7 +174,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   height: 93%;
 }
 
-.edit_wireframe, .wireframe_options, .edit_toolbar, .control_list, .edit_control_properties {
+.edit_wireframe, .wireframe_options, .edit_toolbar, .edit_control_properties, .control_list_container {
   overflow: auto;
 }
 
@@ -216,23 +216,23 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 .control_list {
   height: 100%;
+  padding-top: 30px;
   background-color: blue;
-  padding-top: 30px
 }
 
 .control_card {
-  height: 160px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: yellow;
-  outline-style: solid;
   padding: 15px;
 }
 
 .preview_control {
-  
+  margin-bottom: 10px;
 }
 
 .control_prompt { 
-  position: relative;
+  /* position: relative; */
   font-weight: bold;
   text-align: center;
 }
