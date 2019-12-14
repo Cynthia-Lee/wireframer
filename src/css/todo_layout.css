@@ -183,7 +183,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .edit_name { 
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .edit_size {
@@ -191,7 +191,11 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 #width, #height {
-  width: 90px;
+  width: 70px;
+}
+
+#width {
+  margin-right: 20px;
 }
 
 .sandbox_wireframe {

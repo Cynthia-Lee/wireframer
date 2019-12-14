@@ -117,7 +117,7 @@ class EditScreen extends Component {
                             <input className="active" type="text" name="name" id="name" onChange={this.handleChange} value={wireframe.name} />
                         </div>
                         <div className="input-field edit_size">
-                            <label className="active blue" htmlFor="email" id="size_prompt">width x height</label>
+                            <label className="active" htmlFor="email" id="size_prompt">Width x Height</label>
                             <input className="active" type="number" name="width" id="width" onChange={this.handleChange} value={wireframe.width} />
                             <input className="active" type="number" name="height" id="height" onChange={this.handleChange} value={wireframe.height} />
                         </div>
