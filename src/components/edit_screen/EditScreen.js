@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 import { Modal, Button, Icon } from 'react-materialize';
+import ControlList from './ControlList';
 
 class EditScreen extends Component {
     state = {
@@ -152,14 +153,12 @@ class EditScreen extends Component {
                             <label className="active" htmlFor="email" id="size_prompt">Width x Height</label>
                             <input className="active" type="number" name="width" id="width" onChange={this.handleState} value={this.state.width} />
                             <input className="active" type="number" name="height" id="height" onChange={this.handleState} value={this.state.height} />
-                            <button className="button" onClick={this.changeDimensions}>
+                            <button className="update_dimensions_button button" onClick={this.changeDimensions}>
                                 Update
                             </button>
                         </div>
                     </div>
-                    <div className="control_list row brown">
-                        list of controls
-                    </div>
+                    <ControlList createItem={this.createItem} />
                 </div>
                 <div className="edit_wireframe col s8 white">
                     {this.initializeWireframe()}

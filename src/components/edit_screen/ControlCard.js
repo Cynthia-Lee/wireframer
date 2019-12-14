@@ -3,7 +3,7 @@ import { Icon, Button } from 'react-materialize';
 import { getFirestore } from 'redux-firestore';
 
 class ControlCard extends React.Component {
-
+    
     createControl() {
         var control = {
             "key": "",
@@ -27,6 +27,7 @@ class ControlCard extends React.Component {
         var container = this.createControl();
         container["type"] = "container";
         container["border-thickness"] = 2;
+        container["background-color"] = "white";
         container["width"] = 300;
         container["height"] = 200;
         return container;
@@ -55,9 +56,32 @@ class ControlCard extends React.Component {
     }
 
     createTextfield() {
-        
+        var textfield = this.createControl();
+        textfield["type"] = "textfield";
+        textfield["text"] = "Input";
+        textfield["border-thickness"] = 2;
+        textfield["border-radius"] = 2;
+        textfield["font-size"] = 14;
+        textfield["font-color"] = "gray";
+        textfield["background-color"] = "white";
+        textfield["width"] = 100;
+        textfield["height"] = 40;
+        return textfield;
     }
 
+    controlCard = (item) => {
+        var itemOptions = ["container", "label", "button", "textfield"];
+        if (item == itemOptions[0]) {
+            //return this.props.createItem(this.createContainer());
+        } else if (item == itemOptions[1]) {
+            // return <div className="purple">second</div>
+            // return this.props.createItem(this.createLabel());
+        } else if (item == itemOptions[2]) {
+            // return this.props.createItem(this.createButton());
+        } else if (item == itemOptions[3]) {
+            // return this.props.createItem(this.createTextfield());
+        }
+    }
     /*
     updateItemIds() {
         var itemList = this.props.todoList.items;
@@ -122,34 +146,10 @@ class ControlCard extends React.Component {
     */
 
     render() {
-        // const { item } = this.props;
+        const item = this.props.item;
         return (
-            <div className="list_item_card card z-depth-0 todo-list-link light-green lighten-4">
-                <div className="card-content grey-text text-darken-3 row">
-                    <div className="col s4">
-                        <div className="list_item_card_title card-title">{item.description}</div>
-                        <div className="card-assigned">Assigned to: {item.assigned_to}</div>
-                    </div>
-                    <div className="card-due col s3">{item.due_date}</div>
-                    <div className="card-completed col s3">
-                        <div className='list_item_card_completed'>Completed</div>
-                    </div>
-
-                    <div className="col s2">
-                        <Button
-                            floating
-                            fab={{ direction: 'left' }}
-                            className="red"
-                            large
-                            icon={<Icon>more_horiz</Icon>}
-                        >
-                            {this.props.todoList.items.indexOf(item) == 0 ? <Button floating disabled icon={<Icon>arrow_upward</Icon>} onClick={this.moveUpItem} className="blue" /> : <Button floating icon={<Icon>arrow_upward</Icon>} onClick={this.moveUpItem} className="blue" />}
-                            {this.props.todoList.items.indexOf(item) == this.props.todoList.items.length - 1 ? <Button floating disabled icon={<Icon>arrow_downward</Icon>} onClick={this.moveDownItem} className="green" /> : <Button floating icon={<Icon>arrow_downward</Icon>} onClick={this.moveDownItem} className="green" />}
-                            <Button floating icon={<Icon>delete</Icon>} onClick={this.deleteItem} className="yellow darken-1" />
-                        </Button>
-                    </div>
-
-                </div>
+            <div className="control_card">
+                {this.controlCard(item)}  
             </div>
         );
     }

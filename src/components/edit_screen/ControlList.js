@@ -1,26 +1,29 @@
-/*
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-// import ItemCard from './ItemCard';
+import ControlCard from './ControlCard';
 import { firestoreConnect } from 'react-redux-firebase';
 import { Link } from 'react-router-dom';
 import { getFirestore } from 'redux-firestore';
 
 class ControlList extends React.Component {
     render() {
-        const wireframe = this.props.wireframe;
-        // const items = todoList.items;
+        // const wireframe = this.props.wireframe;
+        // const controlOptions = ["container", "label", "button", "textfield"];
+        const createItem = this.props.createItem;
+        const items = ["container", "label", "button", "textfield"];
         return (
-            <div className="todo-lists section">
-                {items && items.map(function (item) {
-                    item.id = items.indexOf(item);
-                    // console.log(item.id);
-                    return (
-                        <ItemCard todoList={todoList} item={item} />
-                    );
-                })
-                }
+            <div className="control_list_container row brown">
+                <div className="control_list">
+                    {items && items.map(function (item) {
+                        // item.id = items.indexOf(item);
+                        // console.log(item.id);
+                        return (
+                            <ControlCard item={item} createItem={createItem} />
+                        );
+                    })
+                    }
+                </div>
             </div>
         );
     }
@@ -40,4 +43,3 @@ export default compose(
         { collection: 'wireframeList' },
     ]),
 )(ControlList);
-*/

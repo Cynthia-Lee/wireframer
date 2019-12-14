@@ -166,7 +166,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   height: 16%;
 }
 
-.control_list {
+.control_list_container {
   height: 84%;
 }
 
@@ -193,10 +193,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 #width, #height {
   width: 70px;
-}
-
-#width {
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 .sandbox_wireframe {
@@ -213,4 +210,20 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 .edit_toolbar_icon {
   font-size: 3rem;
+}
+
+.control_list_container, .control_card {
+  position: relative;
+}
+
+.control_list {
+  height: 100%;
+  background-color: blue;
+  padding-top: 30px
+}
+
+.control_card {
+  height: 150px;
+  background-color: yellow;
+  outline-style: solid;
 }
