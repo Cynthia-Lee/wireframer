@@ -13,7 +13,7 @@ class ControlList extends React.Component {
         const createItem = this.props.createItem;
         const items = ["container", "label", "button", "textfield"];
         return (
-            <div className="control_list_container row brown">
+            <div className="control_list_container row">
                 <div className="control_list">
                     {items && items.map(function (item) {
                         // item.id = items.indexOf(item);

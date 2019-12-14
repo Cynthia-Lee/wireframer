@@ -28,14 +28,15 @@ class ControlCard extends React.Component {
         container["type"] = "container";
         container["border-thickness"] = 2;
         container["background-color"] = "white";
-        container["width"] = 300;
-        container["height"] = 200;
+        container["width"] = 200;
+        container["height"] = 100;
         return container;
     }
 
     createLabel() {
         var label = this.createControl();
         label["type"] = "label";
+        label["text"] = "Prompt for Input:";
         label["border-thickness"] = 0;
         label["width"] = 300;
         label["height"] = 24;
@@ -65,22 +66,35 @@ class ControlCard extends React.Component {
         textfield["font-color"] = "gray";
         textfield["background-color"] = "white";
         textfield["width"] = 100;
-        textfield["height"] = 40;
+        textfield["height"] = 24;
         return textfield;
     }
 
     controlCard = (item) => {
         var itemOptions = ["container", "label", "button", "textfield"];
+        var control;
+        var prompt;
         if (item == itemOptions[0]) {
-            //return this.props.createItem(this.createContainer());
+            control = this.props.createItem(this.createContainer());
+            prompt = "Container";
         } else if (item == itemOptions[1]) {
-            // return <div className="purple">second</div>
-            // return this.props.createItem(this.createLabel());
+            control = this.props.createItem(this.createLabel());
+            prompt = "Label";
         } else if (item == itemOptions[2]) {
-            // return this.props.createItem(this.createButton());
+            control = this.props.createItem(this.createButton());
+            prompt = "Button";
         } else if (item == itemOptions[3]) {
-            // return this.props.createItem(this.createTextfield());
+            control = this.props.createItem(this.createTextfield());
+            prompt = "Textfield";
+        } else {
+            return "";
         }
+        return <div className="control_card">
+            <div className="preview_control">
+                {control}
+            </div>
+            <div className="control_prompt">{prompt}</div>
+        </div>
     }
     /*
     updateItemIds() {
@@ -148,9 +162,7 @@ class ControlCard extends React.Component {
     render() {
         const item = this.props.item;
         return (
-            <div className="control_card">
-                {this.controlCard(item)}  
-            </div>
+            this.controlCard(item)
         );
     }
 }

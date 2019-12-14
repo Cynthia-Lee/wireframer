@@ -212,9 +212,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   font-size: 3rem;
 }
 
-.control_list_container, .control_card {
-  position: relative;
-}
+/* control_list_container */
 
 .control_list {
   height: 100%;
@@ -223,7 +221,18 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .control_card {
-  height: 150px;
+  height: 160px;
   background-color: yellow;
   outline-style: solid;
+  padding: 15px;
+}
+
+.preview_control {
+  
+}
+
+.control_prompt { 
+  position: relative;
+  font-weight: bold;
+  text-align: center;
 }

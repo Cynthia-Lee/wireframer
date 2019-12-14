@@ -90,8 +90,11 @@ class EditScreen extends Component {
         const wireframe = this.props.wireframe;
         var i = 0;
         var divItems = [];
+        var d;
         for (i = 0; i < wireframe.items.length; i++) {
-            divItems.push(this.createItem(wireframe.items[i]));
+            d = wireframe.items[i];
+            d["position"] = "absolute";
+            divItems.push(this.createItem(d));
         }
         return divItems;
     }
@@ -113,7 +116,10 @@ class EditScreen extends Component {
             "posY": 30
         */
         var type = data["type"];
-        return <div className={{ type }} style={{
+        // console.log(data["position"]);
+        var pos = data["position"] ? data["position"] : "";
+        var textAlign = data["textAlign"] ? data["textAlign"] : "";
+        return <div className={type} style={{
             height: data["height"] + "px",
             width: data["width"] + "px",
             fontSize: data["font-size"] + "px",
@@ -123,7 +129,9 @@ class EditScreen extends Component {
             borderColor: data["border-color"],
             borderWidth: data["border-thickness"],
             borderRadius: data["border-radius"],
-            position: "absolute",
+            // position: "absolute",
+            position: pos, 
+            textAlign: textAlign,
             left: data["posX"],
             top: data["posY"]
         }}>
