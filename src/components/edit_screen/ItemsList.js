@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -24,14 +25,6 @@ class ItemsList extends React.Component {
                         </Link>
                     );
                 })
-                    /*
-                    item.id = item.key;
-                    return (
-                        <Link to={'/todoList/' + todoList.id + '/' + item.id} key={item.id}>
-                            <ItemCard todoList={todoList} item={item} />
-                        </Link>
-                    );})
-                    */
                 }
             </div>
         );
@@ -52,3 +45,4 @@ export default compose(
         { collection: 'todoLists' },
     ]),
 )(ItemsList);
+*/

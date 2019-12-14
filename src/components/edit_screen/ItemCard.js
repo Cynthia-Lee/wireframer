@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { Icon, Button } from 'react-materialize';
 import { getFirestore } from 'redux-firestore';
@@ -128,3 +129,4 @@ class ItemCard extends React.Component {
     }
 }
 export default ItemCard;
+*/

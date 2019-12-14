@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
-import { Modal, Button } from 'react-materialize';
+import { Modal, Button, Icon } from 'react-materialize';
 
 class EditScreen extends Component {
     state = {
@@ -166,7 +166,10 @@ class EditScreen extends Component {
                 </div>
                 <div className="edit_options_right col s2">
                     <div className="edit_toolbar row red">
-                        tool
+                        <div className="col" onClick={""}><i className="small material-icons">zoom_in</i></div>
+                        <div className="col" onClick={""}><i className="small material-icons">zoom_out</i></div>
+                        <div className="col">Save</div>
+                        <div className="col">Close</div>
                     </div>
                     <div className="edit_control_properties row purple">
                         properties
