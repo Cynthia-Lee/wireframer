@@ -162,11 +162,11 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .wireframe_options {
-  height: 14%;
+  height: 16%;
 }
 
 .control_list {
-  height: 86%;
+  height: 84%;
 }
 
 .edit_control_properties {
@@ -177,10 +177,27 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   overflow: auto;
 }
 
+.wireframe_options {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.edit_name { 
+  margin-bottom: 15px;
+}
+
+.edit_size {
+  margin-bottom: 1px;
+}
+
+#width, #height {
+  width: 90px;
+}
+
 .sandbox_wireframe {
   margin: auto;
   margin-top: 1%;
   margin-bottom: 1%;
-  border-style: solid;
-  border-width: 2px;
+  outline-style: solid;
+  outline-width: 2px;
 }

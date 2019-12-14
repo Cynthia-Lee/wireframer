@@ -112,14 +112,14 @@ class EditScreen extends Component {
             <div className="edit_container row">
                 <div className="edit_options_left col s2">
                     <div className="wireframe_options row">
-                        <div className="edit_name">
-                            <div className="input-field">
-                                <label className="active" htmlFor="email" id="name_prompt">Name</label>
-                                <input className="active" type="text" name="name" id="name" onChange={this.handleChange} value={wireframe.name} />
-                            </div>
-                            <div className="edit_size">
-                                Size: {wireframe.width}x{wireframe.height}
-                            </div>
+                        <div className="input-field edit_name">
+                            <label className="active" htmlFor="email" id="name_prompt">Name</label>
+                            <input className="active" type="text" name="name" id="name" onChange={this.handleChange} value={wireframe.name} />
+                        </div>
+                        <div className="input-field edit_size">
+                            <label className="active blue" htmlFor="email" id="size_prompt">width x height</label>
+                            <input className="active" type="number" name="width" id="width" onChange={this.handleChange} value={wireframe.width} />
+                            <input className="active" type="number" name="height" id="height" onChange={this.handleChange} value={wireframe.height} />
                         </div>
                     </div>
                     <div className="control_list row brown">
