@@ -166,8 +166,8 @@ class EditScreen extends Component {
                 </div>
                 <div className="edit_options_right col s2">
                     <div className="edit_toolbar row red">
-                        <div className="col" onClick={""}><i className="small material-icons">zoom_in</i></div>
-                        <div className="col" onClick={""}><i className="small material-icons">zoom_out</i></div>
+                        <div className="col" onClick={""}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
+                        <div className="col" onClick={""}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
                         <div className="col">Save</div>
                         <div className="col">Close</div>
                     </div>

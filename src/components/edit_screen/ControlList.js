@@ -2,27 +2,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import ItemCard from './ItemCard';
+// import ItemCard from './ItemCard';
 import { firestoreConnect } from 'react-redux-firebase';
 import { Link } from 'react-router-dom';
 import { getFirestore } from 'redux-firestore';
 
-class ItemsList extends React.Component {
+class ControlList extends React.Component {
     render() {
-        const todoList = this.props.todoList;
-        const items = todoList.items;
-        console.log("ItemsList: todoList.id " + todoList.id);
+        const wireframe = this.props.wireframe;
+        // const items = todoList.items;
         return (
             <div className="todo-lists section">
                 {items && items.map(function (item) {
-                    // console.log(item);
-                    // console.log(items.indexOf(item));
                     item.id = items.indexOf(item);
                     // console.log(item.id);
                     return (
-                        <Link to={'/todoList/' + todoList.id + '/' + item.id} key={item.key}>
-                            <ItemCard todoList={todoList} item={item} />
-                        </Link>
+                        <ItemCard todoList={todoList} item={item} />
                     );
                 })
                 }
@@ -32,9 +27,9 @@ class ItemsList extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const todoList = ownProps.todoList;
+    const wireframe = ownProps.wireframe;
     return {
-        todoList,
+        wireframe,
         auth: state.firebase.auth,
     };
 };
@@ -42,7 +37,7 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'todoLists' },
+        { collection: 'wireframeList' },
     ]),
-)(ItemsList);
+)(ControlList);
 */

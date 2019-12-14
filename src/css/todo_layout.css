@@ -125,6 +125,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   font-size: 2.2rem !important;
 }
 
+/* ----------- */
 /* wire framer */
 
 .edit_container, .edit_options_right, .edit_options_left, .edit_wireframe {
@@ -204,4 +205,12 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   margin-bottom: 1%;
   outline-style: solid;
   outline-width: 2px;
+}
+
+.edit_toolbar {
+  font-size: 20px;
+}
+
+.edit_toolbar_icon {
+  font-size: 3rem;
 }
