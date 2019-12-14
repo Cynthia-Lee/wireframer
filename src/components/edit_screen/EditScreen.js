@@ -80,7 +80,7 @@ class EditScreen extends Component {
             "posY": 30
         */
         var type = data["type"];
-        return <div className={{type}} style={{
+        return <div className={{ type }} style={{
             height: data["height"] + "px",
             width: data["width"] + "px",
             fontSize: data["font-size"] + "px",
@@ -111,8 +111,16 @@ class EditScreen extends Component {
             // right col = control properties (current)
             <div className="edit_container row">
                 <div className="edit_options_left col s2">
-                    <div className="edit_name row red">
-                        Name: {wireframe.name}
+                    <div className="wireframe_options row">
+                        <div className="edit_name">
+                            <div className="input-field">
+                                <label className="active" htmlFor="email" id="name_prompt">Name</label>
+                                <input className="active" type="text" name="name" id="name" onChange={this.handleChange} value={wireframe.name} />
+                            </div>
+                            <div className="edit_size">
+                                Size: {wireframe.width}x{wireframe.height}
+                            </div>
+                        </div>
                     </div>
                     <div className="control_list row brown">
                         list

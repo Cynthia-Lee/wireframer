@@ -131,19 +131,49 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   height: 90vh;
 }
 
-.edit_name, .control_list, .edit_toolbar, .edit_control_properties {
-  margin-bottom: 0px;
+.edit_container {
+  /*
+  border-style: solid;
+  border-color: #b0bec5;
+  */
+  border-top: 2px solid #90a4ae;
 }
 
-.edit_name, .edit_toolbar {
-  height: 7%;
+.edit_options_right, .edit_options_left, .edit_wireframe {
+  border-bottom: 2px solid #90a4ae;
 }
 
 .control_list, .edit_control_properties {
+  border-top: 2px solid #90a4ae;
+}
+
+.edit_options_right, .edit_options_left {
+  border-right: 2px solid #90a4ae;
+  border-left: 2px solid #90a4ae;
+  background-color: #eeeeee;
+}
+
+.wireframe_options, .control_list, .edit_toolbar, .edit_control_properties {
+  margin-bottom: 0px;
+}
+
+.edit_toolbar {
+  height: 7%;
+}
+
+.wireframe_options {
+  height: 14%;
+}
+
+.control_list {
+  height: 86%;
+}
+
+.edit_control_properties {
   height: 93%;
 }
 
-.edit_wireframe {
+.edit_wireframe, .wireframe_options, .edit_toolbar, .control_list, .edit_control_properties {
   overflow: auto;
 }
 
