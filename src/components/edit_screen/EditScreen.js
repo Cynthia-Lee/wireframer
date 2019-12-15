@@ -290,11 +290,11 @@ class EditScreen extends Component {
                 } else if (properties[i] == "backgroundColor") {
                     prompt = "Background:";
                     // color picker
-                    promptField = "";
+                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={value} onchange={this.test}></input>;
                 } else if (properties[i] == "fontColor") {
                     prompt = "Font Color";
                     // color picker
-                    promptField = "";
+                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={value} onchange={this.test}></input>;
                 } else if (properties[i] == "borderColor") {
                     prompt = "Border Color";
                     // color picker
