@@ -188,33 +188,30 @@ class EditScreen extends Component {
             // var properties = Object.keys(this.state.currElement);
             var properties = ["text", "fontSize", "backgroundColor", "fontColor", "borderColor", "borderWidth", "borderRadius"];
             if (element.type == "container") {
-                properties.splice(0, 1); // containers do not have text
+                properties.splice(0, 2); // containers do not have text
             }
             // container, label, button, textfield
             var i;
             for (i = 0; i < properties.length; i++) {
                 var prompt;
                 var promptField;
-
                 if (properties[i] == "text") {
                     prompt = ""; // text input
                     promptField = <input type="text" className={properties[i] + "_prop_field"} name="text" id="text" value={this.state.currElement.text} onChange={(e) => this.handlePropChange(e, "text")}></input>;
                 } else if (properties[i] == "fontSize") {
                     prompt = "Font Size:"; // number input
                     promptField = <input type="number" className={properties[i] + "_prop_field"} name="fontSize" id="fontSize" value={this.state.currElement.fontSize} onChange={(e) => this.handlePropChange(e, "fontSize")}></input>;
-                } else if (properties[i] == "backgroundColor") { // ADD
+                } else if (properties[i] == "backgroundColor") {
                     prompt = "Background:"; // color picker
                     promptField = <input type="color" className={properties[i] + "_prop_field"} name="backgroundColor" id="backgroundColor" value={this.state.currElement.backgroundColor} onChange={(e) => this.handlePropChange(e, "backgroundColor")}></input>;
-                } else if (properties[i] == "fontColor") { // ADD
-                    prompt = "Font Color:";
-                    // color picker
+                } else if (properties[i] == "fontColor") {
+                    prompt = "Font Color:"; // color picker
                     promptField = "";
-                    // promptField = <input type="color" className={properties[i] + "_prop_field"} value={this.state.fontColor}></input>;
-                } else if (properties[i] == "borderColor") { // ADD
-                    prompt = "Border Color:";
-                    // color picker
+                    promptField = <input type="color" className={properties[i] + "_prop_field"} name="fontColor" id="fontColor" value={this.state.fontColor} onChange={(e) => this.handlePropChange(e, "fontColor")}></input>;
+                } else if (properties[i] == "borderColor") {
+                    prompt = "Border Color:"; // color picker
                     promptField = "";
-                    // promptField = <input type="color" className={properties[i] + "_prop_field"} value={this.state.borderColor}></input>;
+                    promptField = <input type="color" className={properties[i] + "_prop_field"} name="borderColor" id="borderColor" value={this.state.borderColor} onChange={(e) => this.handlePropChange(e, "borderColor")}></input>;
                 } else if (properties[i] == "borderWidth") {
                     prompt = "Border Thickness:"; // number input
                     promptField = <input type="number" className={properties[i] + "_prop_field"} name="borderWidth" id="borderWidth" value={this.state.currElement.borderWidth} onChange={(e) => this.handlePropChange(e, "borderWidth")}></input>;
@@ -229,7 +226,6 @@ class EditScreen extends Component {
                 divList.push(div);
             }
 
-            // this.state.currElement.backgroundColor = this.state.backgroundColor;
             return divList;
         }
     }
