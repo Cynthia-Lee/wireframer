@@ -208,20 +208,23 @@ class EditScreen extends Component {
                     promptField = <input type="number" className={properties[i] + "_prop_field"} name="fontSize" id="fontSize" value={this.state.fontSize} onChange={(e) => this.handlePropChange(e, "fontSize")}></input>;
                 } else if (properties[i] == "backgroundColor") { // ADD
                     prompt = "Background:"; // color picker
-                    promptField = <input type="color" className={properties[i] + "_prop_field"} name="backgroundColor" id="backgroundColor" value={this.state.backgroundColor} onChange={(e) => this.handlePropChange(e, "backgroundColor")}></input>;
+                    promptField = "";
+                    // promptField = <input type="color" className={properties[i] + "_prop_field"} name="backgroundColor" id="backgroundColor" value={this.state.backgroundColor} onChange={(e) => this.handlePropChange(e, "backgroundColor")}></input>;
                 } else if (properties[i] == "fontColor") { // ADD
-                    prompt = "Font Color";
+                    prompt = "Font Color:";
                     // color picker
-                    promptField = <input type="color" className={properties[i] + "_prop_field"} value={this.state.fontColor}></input>;
+                    promptField = "";
+                    // promptField = <input type="color" className={properties[i] + "_prop_field"} value={this.state.fontColor}></input>;
                 } else if (properties[i] == "borderColor") { // ADD
-                    prompt = "Border Color";
+                    prompt = "Border Color:";
                     // color picker
-                    promptField = <input type="color" className={properties[i] + "_prop_field"} value={this.state.borderColor}></input>;
+                    promptField = "";
+                    // promptField = <input type="color" className={properties[i] + "_prop_field"} value={this.state.borderColor}></input>;
                 } else if (properties[i] == "borderWidth") {
-                    prompt = "Border Thickness"; // number input
+                    prompt = "Border Thickness:"; // number input
                     promptField = <input type="number" className={properties[i] + "_prop_field"} name="borderWidth" id="borderWidth" value={this.state.borderWidth} onChange={(e) => this.handlePropChange(e, "borderWidth")}></input>;
                 } else if (properties[i] == "borderRadius") {
-                    prompt = "Border Radius"; // number input
+                    prompt = "Border Radius:"; // number input
                     promptField = <input type="number" className={properties[i] + "_prop_field"} name="borderRadius" id="borderRadius" value={this.state.borderRadius} onChange={(e) => this.handlePropChange(e, "borderRadius")}></input>;
                 }
                 var div = <div className={properties[i] + "_prop"}>
