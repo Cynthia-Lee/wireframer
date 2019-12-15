@@ -270,15 +270,47 @@ class EditScreen extends Component {
         if (element) {
             var divList = [];
             // var properties = Object.keys(this.state.currElement);
-            var properties = ["text", "fontSize", "backgroundColor", "borderColor", "borderWidth", "borderRadius"];
+            var properties = ["text", "fontSize", "backgroundColor", "fontColor", "borderColor", "borderWidth", "borderRadius"];
             if (element.type == "container") {
                 properties.splice(0, 1); // containers do not have text
             }
             // container, label, button, textfield
             var i;
             for (i = 0; i < properties.length; i++) {
+                var prompt;
+                var promptField;
+                var value = element[properties[i]];
+                if (properties[i] == "text") {
+                    prompt = "";
+                    promptField = <input type="text" className={properties[i]+"_prop_field"} value={value}></input>;
+                } else if (properties[i] == "fontSize") {
+                    prompt = "Font Size:";
+                    // number input
+                    promptField = <input type="number" className={properties[i]+"_prop_field"} value={value}></input>;
+                } else if (properties[i] == "backgroundColor") {
+                    prompt = "Background:";
+                    // color picker
+                    promptField = "";
+                } else if (properties[i] == "fontColor") {
+                    prompt = "Font Color";
+                    // color picker
+                    promptField = "";
+                } else if (properties[i] == "borderColor") {
+                    prompt = "Border Color";
+                    // color picker
+                    promptField = "";
+                } else if (properties[i] == "borderWidth") {
+                    prompt = "Border Thickness";
+                    // number input
+                    promptField = <input type="text" className={properties[i]+"_prop_field"} value={value}></input>;
+                } else if (properties[i] == "borderRadius") {
+                    prompt = "Border Radius";
+                    // number input
+                    promptField = <input type="text" className={properties[i]+"_prop_field"} value={value}></input>;
+                }
                 var div = <div className={properties[i]+"_prop"}>
-                    hi
+                    <div className={properties[i]+"_prop_prompt"}>{prompt}</div>
+                    {promptField}
                 </div>
                 divList.push(div);
             }
