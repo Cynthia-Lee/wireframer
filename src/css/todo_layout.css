@@ -155,7 +155,8 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .edit_toolbar {
-  height: 7%;
+  height: 5%;
+  padding-top: 1%;
 }
 
 .wireframe_options {
@@ -187,7 +188,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   margin-bottom: 1px;
 }
 
-#width, #height {
+#checkWidth, #checkHeight {
   width: 70px;
   margin-right: 15px;
 }
@@ -214,8 +215,16 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .edit_toolbar_icon {
-  font-size: 3rem;
+  font-size: 2rem;
   cursor: pointer;
+}
+
+.zoom_toolbar_button {
+  padding-right: 0px !important;
+}
+
+.toolbar_button {
+  margin-left: 7px;
 }
 
 /* control_list_container */

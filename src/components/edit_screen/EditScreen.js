@@ -231,11 +231,11 @@ class EditScreen extends Component {
                     {this.initializeWireframe()}
                 </div>
                 <div className="edit_options_right col s2">
-                    <div className="edit_toolbar row red">
-                        <div className="col" onClick={this.zoomIn}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
-                        <div className="col" onClick={this.zoomOut}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
-                        <div className="toolbar_button col" onClick={this.save}>Save</div>
-                        <div className="toolbar_button col">Close</div>
+                    <div className="edit_toolbar row">
+                        <div className="zoom_toolbar_button col" onClick={this.zoomIn}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
+                        <div className="zoom_toolbar_button col" onClick={this.zoomOut}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
+                        <button className="toolbar_button col" onClick={this.save}>Save</button>
+                        <button className="toolbar_button col">Close</button>
                     </div>
                     <div className="edit_control_properties row purple">
                         properties

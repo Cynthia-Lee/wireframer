@@ -51,7 +51,7 @@ div.banner {
   font-size: 24px !important;
 }
 
-#name, #name_prompt, #size_prompt, #width, #height,
+#name, #name_prompt, #size_prompt, #checkWidth, #checkHeight,
 #owner, #owner_prompt, #description_prompt, #description, 
 #assigned_to_prompt, #assigned_to, #due_date_prompt, #due_date {
   font-size: 20px;
