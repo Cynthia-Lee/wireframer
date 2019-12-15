@@ -209,6 +209,10 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   font-size: 20px;
 }
 
+.toolbar_button {
+  cursor: pointer;
+}
+
 .edit_toolbar_icon {
   font-size: 3rem;
   cursor: pointer;

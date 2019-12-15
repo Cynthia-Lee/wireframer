@@ -8,15 +8,31 @@ import { Modal, Button, Icon } from 'react-materialize';
 import ControlList from './ControlList';
 
 class EditScreen extends Component {
+    /* 
+    "key": 1,
+    "user": "6Ky2ocJRtPW6270wXJbLZAwRamH3",
+    "name": "Wireframe Name",
+    "width": 400,
+    "height": 700,
+    "items": []
+    */
     state = {
-        name: this.props.wireframe.name,
+        // initial data from database
+        key: this.props.wireframe.key,
         user: this.props.wireframe.user,
+        name: this.props.wireframe.name,
         width: this.props.wireframe.width,
         height: this.props.wireframe.height,
-        disableDimensionChange: true,
+        items: this.props.wireframe.items,
 
+        checkWidth: this.props.wireframe.width,
+        checkHeight: this.props.wireframe.height,
+        disableDimensionChange: true,
         zoom: 1
     }
+    // seperating state and database wireframe
+    // state will hold current changes, not changing database wireframe
+    // only will change database wireframe after click "Save"
 
     handleChange = (e) => {
         const { target } = e;
@@ -25,23 +41,15 @@ class EditScreen extends Component {
             ...state,
             [target.id]: target.value,
         }));
+
+        /*
         // update the store
         const fireStore = getFirestore();
         fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
             [target.id]: target.value,
         });
+        */
     }
-
-    /*
-    handleState = (e) => {
-        const { target } = e;
-
-        this.setState(state => ({
-            ...state,
-            [target.id]: target.value,
-        }));
-    }
-    */
 
     handleDimensionChange = (e) => {
         const { target } = e;
@@ -53,8 +61,7 @@ class EditScreen extends Component {
     }
 
     checkDimensions = () => {
-        console.log(this.state.width);
-        if (this.state.width < 1 || this.state.width > 5000 || this.state.height < 1 || this.state.height > 5000) {
+        if (this.state.checkWidth < 1 || this.state.checkWidth > 5000 || this.state.checkHeight < 1 || this.state.checkHeight > 5000) {
             this.setState({
                 disableDimensionChange: true
             });
@@ -66,16 +73,22 @@ class EditScreen extends Component {
     }
 
     changeDimensions = () => {
-        const wireframe = this.props.wireframe;
-        wireframe.width = this.state.width;
-        wireframe.height = this.state.height;
+        this.setState({
+            width: this.state.checkWidth,
+            height: this.state.checkHeight
+        });
 
+        // console.log(this.state.width);
+        // console.log(this.state.height);
+
+        /*
         // update the store
         const fireStore = getFirestore();
         fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
             width: wireframe.width,
             height: wireframe.height
         });
+        */
     }
 
     zoomIn = () => {
@@ -101,10 +114,10 @@ class EditScreen extends Component {
     */
 
     initializeWireframe = () => {
-        const wireframe = this.props.wireframe;
+        // const wireframe = this.props.wireframe;
         return <div className="sandbox_wireframe" style={{
-            height: wireframe.height + "px",
-            width: wireframe.width + "px",
+            height: this.state.height + "px",
+            width: this.state.width + "px",
             transform: "scale(" + this.state.zoom + ")"
         }}>
             {this.initializeItems()}
@@ -112,12 +125,12 @@ class EditScreen extends Component {
     }
 
     initializeItems = () => {
-        const wireframe = this.props.wireframe;
+        // const wireframe = this.props.wireframe;
         var i = 0;
         var divItems = [];
         var d;
-        for (i = 0; i < wireframe.items.length; i++) {
-            d = wireframe.items[i];
+        for (i = 0; i < this.state.items.length; i++) {
+            d = this.state.items[i];
             d["position"] = "absolute";
             divItems.push(this.createItem(d));
         }
@@ -172,13 +185,26 @@ class EditScreen extends Component {
         </div>
     }
 
+    save = () => {
+        // update the store
+        // save data from state to wireframe in the database
+        // key, user
+        // name, width, height, items
+        const fireStore = getFirestore();
+        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
+            name: this.state.name,
+            width: this.state.width,
+            height: this.state.height,
+            items: this.state.items
+        });
+    }
+
     render() {
         const auth = this.props.auth;
-        const wireframe = this.props.wireframe;
+        // const wireframe = this.props.wireframe;
         if (!auth.uid) {
             return <Redirect to="/" />;
         }
-        // console.log(wireframe.name);
         return (
             // left col = small tool bar, control list
             // middle = wireframe
@@ -188,12 +214,12 @@ class EditScreen extends Component {
                     <div className="wireframe_options row">
                         <div className="input-field edit_name">
                             <label className="active" htmlFor="email" id="name_prompt">Name</label>
-                            <input className="active" type="text" name="name" id="name" onChange={this.handleChange} value={wireframe.name} />
+                            <input className="active" type="text" name="name" id="name" onChange={this.handleChange} value={this.state.name} />
                         </div>
                         <div className="input-field edit_size">
                             <label className="active" htmlFor="email" id="size_prompt">Width x Height</label>
-                            <input className="active" type="number" name="width" id="width" onChange={this.handleDimensionChange} value={this.state.width} />
-                            <input className="active" type="number" name="height" id="height" onChange={this.handleDimensionChange} value={this.state.height} />
+                            <input className="active" type="number" name="checkWidth" id="checkWidth" onChange={this.handleDimensionChange} value={this.state.checkWidth} />
+                            <input className="active" type="number" name="checkHeight" id="checkHeight" onChange={this.handleDimensionChange} value={this.state.checkHeight} />
                             <button className="update_dimensions_button button" onClick={this.changeDimensions} disabled={this.state.disableDimensionChange}>
                                 Update
                             </button>
@@ -208,8 +234,8 @@ class EditScreen extends Component {
                     <div className="edit_toolbar row red">
                         <div className="col" onClick={this.zoomIn}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
                         <div className="col" onClick={this.zoomOut}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
-                        <div className="col">Save</div>
-                        <div className="col">Close</div>
+                        <div className="toolbar_button col" onClick={this.save}>Save</div>
+                        <div className="toolbar_button col">Close</div>
                     </div>
                     <div className="edit_control_properties row purple">
                         properties
