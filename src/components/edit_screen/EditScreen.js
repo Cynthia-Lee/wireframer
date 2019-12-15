@@ -46,8 +46,6 @@ class EditScreen extends Component {
         borderWidth: "",
         borderRadius: "",
 
-        original: this.props.wireframe.items,
-        edited: false, 
         showModal: false
     }
     // seperating state and database wireframe
@@ -103,25 +101,44 @@ class EditScreen extends Component {
     }
 
     checkEdited = () => {
-        // let val = (this.state.original != this.state.items);
-        let val = false;
-        console.log(val);
-        this.setState({
-            edited: val
-        });
-        return val;
+        // let sameItems = JSON.stringify(this.props.wireframe.items) == JSON.stringify(this.state.items);
+        if ((this.props.wireframe.width != this.state.width) | (this.props.wireframe.height != this.state.height)) {
+            return true;
+        }
+        let sameItems = (this.props.wireframe.items.length == this.state.items.length);
+        if (!sameItems) {return true}
+        var i;
+        for (i = 0; i < this.props.wireframe.items.length; i++) {
+            let a = this.props.wireframe.items[i];
+            let b = this.state.items[i];
+            for (var key in a) {
+                if (a[key] != b[key]) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     handleClose = () => {
-        // show modal
-        if (this.checkEdited()) { // if it was edited, prompt the modal
-            this.setState({
-                showModal: true
-            });
-        } else {
-            // exit
+        // console.log(this.checkEdited());
+        // show modal // if it was edited, prompt the modal
+        this.setState({
+            showModal: this.checkEdited()
+        });
+        if (!this.checkEdited()) { 
             this.close();
         }
+    }
+
+    confirmClose = () => {
+        this.close();
+    }
+
+    cancelClose = () => {
+        this.setState({
+            showModal: false
+        });
     }
 
     handleChange = (e) => {
@@ -394,8 +411,6 @@ class EditScreen extends Component {
         this.props.history.goBack();
     }
 
-    
-
     render() {
         const auth = this.props.auth;
         if (!auth.uid) {
@@ -432,21 +447,25 @@ class EditScreen extends Component {
                         <div className="zoom_toolbar_button col" onClick={this.zoomIn}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
                         <div className="zoom_toolbar_button col" onClick={this.zoomOut}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
                         <button className="toolbar_button col" onClick={this.save}>Save</button>
+                        <button className="toolbar_button col" onClick={this.handleClose}>Close</button>
+                        
                         <Modal className="close_wireframe_modal" header="Close Wireframe?"
                             actions={
                                 <div class="close_wireframe_modal">
-                                    <div className="confirm_close_button modal-close waves-effect waves-light green btn-flat" onClick={this.close}><i className="material-icons left">check</i>Yes</div>
-                                    <div className="modal-close waves-effect waves-light red btn-flat"><i className="material-icons left">close</i>No</div>
+                                    <div className="confirm_close_button modal-close waves-effect waves-light green btn-flat" onClick={this.confirmClose}><i className="material-icons left">check</i>Yes</div>
+                                    <div className="modal-close waves-effect waves-light red btn-flat" onClick={this.cancelClose}><i className="material-icons left">close</i>No</div>
                                 </div>
                             }
-                            trigger={<button className="toolbar_button col" onClick={this.handleClose}>Close</button>} 
-                            show={false}
+                            // trigger={<button className="toolbar_button col" onClick={this.handleClose}>Close</button>} 
+                            open={this.state.showModal}
                             options={{ dismissible: false }}>
                             <div class="close_wireframe_modal_content">
                                 <p>Are you sure you want to close this wireframe?</p>
                                 <p>Your recent changes will not be saved.</p>
                             </div>
                         </Modal>
+
+
                     </div>
                     <div className="control_properties_container row">
                         <div className="control_properties">
