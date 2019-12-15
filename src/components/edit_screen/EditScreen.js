@@ -169,7 +169,7 @@ class EditScreen extends Component {
         return <div className="sandbox_wireframe" style={{
             height: this.state.height + "px",
             width: this.state.width + "px",
-            transform: "scale(" + this.state.zoom + ")"
+            // transform: "scale(" + this.state.zoom + ")"
         }}>
             {this.initializeItems()}
         </div>
