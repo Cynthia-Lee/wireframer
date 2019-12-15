@@ -13,7 +13,9 @@ class EditScreen extends Component {
         user: this.props.wireframe.user,
         width: this.props.wireframe.width,
         height: this.props.wireframe.height,
-        disableDimensionChange: true
+        disableDimensionChange: true,
+
+        zoom: 1
     }
 
     handleChange = (e) => {
@@ -68,28 +70,20 @@ class EditScreen extends Component {
         wireframe.width = this.state.width;
         wireframe.height = this.state.height;
 
-
         // update the store
         const fireStore = getFirestore();
         fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
             width: wireframe.width,
             height: wireframe.height
         });
+    }
 
-        /*
-        // Non-integer dimension or integers smaller than 1 or 
-        // larger than 5000 should be disregarded and should not update the diagram. 
-        if (wireframe.width < 1 || wireframe.width > 5000 || wireframe.height < 1 || wireframe.height > 5000) {
-            // invalid, disreguard
-        } else {
-            // update the store
-            const fireStore = getFirestore();
-            fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
-                width: wireframe.width,
-                height: wireframe.height
-            });
-        }
-        */
+    zoomIn = () => {
+        // console.log("Zoomed in 2x");
+        this.setState({
+            zoom: this.state.zoom * 2
+        });
+        //}, function () { console.log(this.state.zoom); });
     }
 
     /*
@@ -105,7 +99,7 @@ class EditScreen extends Component {
         return <div className="sandbox_wireframe" style={{
             height: wireframe.height + "px",
             width: wireframe.width + "px",
-            position: "relative"
+            transform: "scale(" + this.state.zoom + ")"
         }}>
             {this.initializeItems()}
         </div>
@@ -201,12 +195,12 @@ class EditScreen extends Component {
                     </div>
                     <ControlList createItem={this.createItem} />
                 </div>
-                <div className="edit_wireframe col s8 white">
+                <div className="wireframe_container col s8 white">
                     {this.initializeWireframe()}
                 </div>
                 <div className="edit_options_right col s2">
                     <div className="edit_toolbar row red">
-                        <div className="col" onClick={""}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
+                        <div className="col" onClick={this.zoomIn}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
                         <div className="col" onClick={""}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
                         <div className="col">Save</div>
                         <div className="col">Close</div>

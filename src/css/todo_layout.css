@@ -128,7 +128,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 /* ----------- */
 /* wire framer */
 
-.edit_container, .edit_options_right, .edit_options_left, .edit_wireframe {
+.edit_container, .edit_options_right, .edit_options_left, .wireframe_container {
   height: 90vh;
 }
 
@@ -140,12 +140,8 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   border-top: 2px solid #90a4ae;
 }
 
-.edit_options_right, .edit_options_left, .edit_wireframe {
+.edit_options_right, .edit_options_left, .wireframe_container, .wireframe_options, .edit_toolbar {
   border-bottom: 2px solid #90a4ae;
-}
-
-.control_list, .edit_control_properties {
-  border-top: 2px solid #90a4ae;
 }
 
 .edit_options_right, .edit_options_left {
@@ -196,12 +192,20 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   margin-right: 15px;
 }
 
-.sandbox_wireframe {
+.wireframe_container { 
+  overflow: auto;
+}
+
+.sandbox_wireframe { /* has zoom function */
   margin: auto;
+  /*
   margin-top: 1%;
   margin-bottom: 1%;
+  */
+  position: "relative";
   outline-style: solid;
   outline-width: 2px;
+  transform-origin: top left;
 }
 
 .edit_toolbar {
@@ -210,6 +214,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 .edit_toolbar_icon {
   font-size: 3rem;
+  cursor: pointer;
 }
 
 /* control_list_container */
