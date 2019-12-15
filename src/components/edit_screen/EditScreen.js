@@ -9,7 +9,7 @@ import ControlList from './ControlList';
 import { Rnd } from "react-rnd";
 
 class EditScreen extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.processCtrlD = this.processCtrlD.bind(this);
         this.processDelete = this.processDelete.bind(this);
@@ -36,7 +36,7 @@ class EditScreen extends Component {
         checkHeight: this.props.wireframe.height,
         disableDimensionChange: true,
         zoom: 1,
-        
+
         currElement: "",
         text: "",
         fontSize: "",
@@ -50,13 +50,13 @@ class EditScreen extends Component {
     // state will hold current changes, not changing database wireframe
     // only will change database wireframe after click "Save"
 
-    processCtrlD(event){
-        if(event.ctrlKey && event.keyCode === 68) { // control & D
-            event.preventDefault();
+    processCtrlD(event) {
+        if (event.ctrlKey && event.keyCode === 68) { // control & D
+            event.preventDefault(); // do not trigger browser bookmark
             if (this.state.currElement) {
                 var copy = {};
                 // console.log(this.state.currElement);
-                for(var key in this.state.currElement) {
+                for (var key in this.state.currElement) {
                     copy[key] = this.state.currElement[key];
                 }
                 copy["x"] = copy["x"] + 100;
@@ -71,7 +71,7 @@ class EditScreen extends Component {
     }
 
     processDelete(event) {
-        if(event.keyCode === 46) { // delete key
+        if (event.keyCode === 46) { // delete key
             if (this.state.currElement) {
                 const items = this.state.items;
                 items.splice((items.indexOf(this.state.currElement)), 1);
@@ -81,25 +81,22 @@ class EditScreen extends Component {
             }
         }
     }
-    
+
     componentDidMount() {
         document.addEventListener("keydown", this.processCtrlD, false);
         document.addEventListener("keydown", this.processDelete, false);
     }
-    
+
     componentWillUnmount() {
         document.removeEventListener("keydown", this.processCtrlD, false);
         document.addEventListener("keydown", this.processDelete, false);
     }
 
-    /*
-    updateCurrElement = (event, element) => {
+    updateItems = (data) => {
         this.setState({
-            currElement: element
+            items: data
         });
-        console.log("TEST");
     }
-    */
 
     handleChange = (e) => {
         const { target } = e;
@@ -119,24 +116,20 @@ class EditScreen extends Component {
         }), function () { this.checkDimensions() });
     }
 
-    handlePropChange = (e, prop) => {
-        const { target } = e;
-        // update that item's text
-
-        this.setState(state => ({
-            ...state,
-            [target.id]: target.value,
-        }), function() { this.state.currElement.text = this.state.text });
-    }
-
     handleClick = (e) => {
         const { target } = e;
         // console.log(target);
         // console.log(target.id);
         if (target.id != "control") {
-            console.log("NOT CONTROL");
             this.setState({
-                currElement: ""
+                currElement: "",
+                text: "",
+                fontSize: "",
+                backgroundColor: "",
+                fontColor: "",
+                borderColor: "",
+                borderWidth: "",
+                borderRadius: ""
             });
         } else {
             // console.log("CONTROL");
@@ -162,23 +155,81 @@ class EditScreen extends Component {
         });
     }
 
-    zoomIn = () => {
-        // console.log("Zoomed in 2x");
-        this.setState({
-            zoom: this.state.zoom * 2
-        });
+    handlePropChange = (e, prop) => {
+        const { target } = e;
+        // update state
+        this.setState(state => ({
+            ...state,
+            [target.id]: target.value,
+        }));
+        // }), function() { console.log(this.state.text) });
+
+        if (prop == "text") {
+            this.state.currElement.text = this.state.text;
+        } else if (prop == "fontSize") {
+            this.state.currElement.fontSize = this.state.fontSize;
+        } else if (prop == "backgroundColor") {
+            // ADD
+        } else if (prop == "fontColor") {
+            // ADD
+        } else if (prop == "borderColor") {
+            // ADD
+        } else if (prop == "borderWidth") {
+            // this.state.currElement.borderWidth = this.state.borderWidth;
+        } else if (prop == "borderRadius") {
+            // this.state.currElement.borderRadius = this.state.borderRadius;
+        }
     }
 
-    zoomOut = () => {
-        this.setState({
-            zoom: this.state.zoom * 0.5
-        });
-    }
-
-    updateItems = (data) => {
-        this.setState({
-            items: data 
-        });
+    initializeProperties = () => {
+        const element = this.state.currElement;
+        if (element) {
+            var divList = [];
+            // var properties = Object.keys(this.state.currElement);
+            var properties = ["text", "fontSize", "backgroundColor", "fontColor", "borderColor", "borderWidth", "borderRadius"];
+            if (element.type == "container") {
+                properties.splice(0, 1); // containers do not have text
+            }
+            // container, label, button, textfield
+            var i;
+            for (i = 0; i < properties.length; i++) {
+                var prompt;
+                var promptField;
+                // var val = element[properties[i]];
+                // console.log(val);
+                if (properties[i] == "text") {
+                    prompt = ""; // text input
+                    promptField = <input type="text" className={properties[i] + "_prop_field"} name="text" id="text" value={this.state.text} onChange={(e) => this.handlePropChange(e, "text")}></input>;
+                } else if (properties[i] == "fontSize") {
+                    prompt = "Font Size:"; // number input
+                    promptField = <input type="number" className={properties[i] + "_prop_field"} name="fontSize" id="fontSize" value={this.state.fontSize} onChange={(e) => this.handlePropChange(e, "fontSize")}></input>;
+                } else if (properties[i] == "backgroundColor") { // ADD
+                    prompt = "Background:"; 
+                    // color picker
+                    promptField = <input type="color" className={properties[i] + "_prop_field"} name="backgroundColor" id="backgroundColor" value={this.state.backgroundColor}></input>;
+                } else if (properties[i] == "fontColor") { // ADD
+                    prompt = "Font Color";
+                    // color picker
+                    promptField = <input type="color" className={properties[i] + "_prop_field"} value={this.state.fontColor}></input>;
+                } else if (properties[i] == "borderColor") { // ADD
+                    prompt = "Border Color";
+                    // color picker
+                    promptField = <input type="color" className={properties[i] + "_prop_field"} value={this.state.borderColor}></input>;
+                } else if (properties[i] == "borderWidth") {
+                    prompt = "Border Thickness"; // number input
+                    promptField = <input type="number" className={properties[i] + "_prop_field"} name="borderWidth" id="borderWidth" value={this.state.borderWidth} onChange={(e) => this.handlePropChange(e, "borderWidth")}></input>;
+                } else if (properties[i] == "borderRadius") {
+                    prompt = "Border Radius"; // number input
+                    promptField = <input type="number" className={properties[i] + "_prop_field"} name="borderRadius" id="borderRadius" value={this.state.borderRadius} onChange={(e) => this.handlePropChange(e, "borderRadius")}></input>;
+                }
+                var div = <div className={properties[i] + "_prop"}>
+                    <div className={properties[i] + "_prop_prompt"}>{prompt}</div>
+                    {promptField}
+                </div>
+                divList.push(div);
+            }
+            return divList;
+        }
     }
 
     /*
@@ -227,18 +278,13 @@ class EditScreen extends Component {
             "x": 22,
             "y": 30
         */
-        /*
-        if (data == "") {
-            console.log("HELP");
-        }
-        */
         var type = data["type"];
         var pad = "";
         // console.log(data["position"]);
         var pos = data["position"] ? data["position"] : "";
         var textAlign = data["textAlign"] ? data["textAlign"] : "";
-        if (type == "button") { 
-            textAlign = "center"; 
+        if (type == "button") {
+            textAlign = "center";
         } else {
             textAlign = "left";
         }
@@ -254,7 +300,7 @@ class EditScreen extends Component {
             borderColor: data["borderColor"],
             borderWidth: data["borderWidth"],
             borderRadius: data["borderRadius"],
-            position: pos, 
+            position: pos,
             textAlign: textAlign,
             // left: data["x"],
             // top: data["y"],
@@ -275,7 +321,7 @@ class EditScreen extends Component {
             bounds="parent"
             size={{ width: data["width"], height: data["height"] }}
             position={{ x: data.x, y: data.y }}
-            onDragStop={(e, d) => { 
+            onDragStop={(e, d) => {
                 data.x = d.x;
                 data.y = d.y;
             }}
@@ -283,7 +329,7 @@ class EditScreen extends Component {
                 data.width = ref.style.width;
                 data.height = ref.style.height;
             }}
-            
+
             onClick={(e, d) => {
                 // most recently clicked?
                 // data
@@ -298,7 +344,6 @@ class EditScreen extends Component {
                     borderRadius: data.borderRadius
                 });
             }}
-            
         >
             {data["text"]}
         </Rnd>
@@ -306,58 +351,17 @@ class EditScreen extends Component {
         return element;
     }
 
-    initializeProperties = () => {
-        const element = this.state.currElement;
-        if (element) {
-            var divList = [];
-            // var properties = Object.keys(this.state.currElement);
-            var properties = ["text", "fontSize", "backgroundColor", "fontColor", "borderColor", "borderWidth", "borderRadius"];
-            if (element.type == "container") {
-                properties.splice(0, 1); // containers do not have text
-            }
-            // container, label, button, textfield
-            var i;
-            for (i = 0; i < properties.length; i++) {
-                var prompt;
-                var promptField;
-                var val = element[properties[i]];                
-                // console.log(val);
-                if (properties[i] == "text") {
-                    prompt = "";
-                    promptField = <input type="text" className={properties[i]+"_prop_field"} name="text" id="text" value={this.state.text} onChange={(e) => this.handlePropChange(e, "text")}></input>;
-                } else if (properties[i] == "fontSize") {
-                    prompt = "Font Size:";
-                    // number input
-                    promptField = <input type="number" className={properties[i]+"_prop_field"} value={this.state.fontSize}></input>;
-                } else if (properties[i] == "backgroundColor") {
-                    prompt = "Background:";
-                    // color picker
-                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={this.state.backgroundColor}></input>;
-                } else if (properties[i] == "fontColor") {
-                    prompt = "Font Color";
-                    // color picker
-                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={this.state.fontColor}></input>;
-                } else if (properties[i] == "borderColor") {
-                    prompt = "Border Color";
-                    // color picker
-                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={this.state.borderColor}></input>;
-                } else if (properties[i] == "borderWidth") {
-                    prompt = "Border Thickness";
-                    // number input
-                    promptField = <input type="number" className={properties[i]+"_prop_field"} value={this.state.borderWidth}></input>;
-                } else if (properties[i] == "borderRadius") {
-                    prompt = "Border Radius";
-                    // number input
-                    promptField = <input type="number" className={properties[i]+"_prop_field"} value={this.state.borderRadius}></input>;
-                }
-                var div = <div className={properties[i]+"_prop"}>
-                    <div className={properties[i]+"_prop_prompt"}>{prompt}</div>
-                    {promptField}
-                </div>
-                divList.push(div);
-            }
-            return divList;
-        }   
+    zoomIn = () => {
+        // console.log("Zoomed in 2x");
+        this.setState({
+            zoom: this.state.zoom * 2
+        });
+    }
+
+    zoomOut = () => {
+        this.setState({
+            zoom: this.state.zoom * 0.5
+        });
     }
 
     save = () => {
