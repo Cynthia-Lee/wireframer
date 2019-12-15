@@ -162,7 +162,6 @@ class EditScreen extends Component {
         }
         if (type == "textfield") { pad = "5px"; }
 
-        console.log(data);
         const style = {
             // height: data["height"] + "px",
             // width: data["width"] + "px",
@@ -171,7 +170,7 @@ class EditScreen extends Component {
             color: data["fontColor"],
             borderStyle: "solid",
             borderColor: data["borderColor"],
-            borderWidth: data["borderThickness"],
+            borderWidth: data["borderWidth"],
             borderRadius: data["borderRadius"],
             position: pos, 
             textAlign: textAlign,
@@ -210,25 +209,30 @@ class EditScreen extends Component {
                 // find the value in the items list
                 /*
                 // item
-                
-                */
+                backgroundColor, borderColor, borderRadius, 
+                borderWidth, fontColor,
+                fontSize, height, key,
+                position, text, type, width, x, y
+                */ // exclude: key
+                // position, fontColor, borderStyle
                 /*
                 // element
-                backgroundColor, borderColor, borderRadius, borderStyle, borderWidth: 1,
+                backgroundColor, borderColor, borderRadius, 
+                borderStyle, 
+                borderWidth,
                 color, fontSize, paddingLeft, position, textAlign
                 */
-                for(index = 0; index < this.state.items.length; index++) {
+                // for(index = 0; index < this.state.items.length; index++) {
                     var dict = this.state.items[0];
                     // console.log(element.props.style);
-                    console.log(dict);
-                    // console.log(dict["background-color"]);
+                    // console.log(dict["backgroundColor"]);
                     // console.log(element.props.style.backgroundColor);
-                    /*
                     for(var key in dict) {
-                        var value = dict[key];
+                        console.log(key);
+                        // var value = dict[key];
                         
-                    }*/
-                }
+                    }
+                // }
                 // console.log(newItems);
 
                 /*
