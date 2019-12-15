@@ -32,6 +32,13 @@ class EditScreen extends Component {
         zoom: 1,
 
         currElement: "",
+        // old values of element, size and position
+        eleWidth: "",
+        eleHeight: "",
+        eleX: "",
+        eleY: "",
+
+        // new values of the element, after move or drag
         currWidth: "",
         currHeight: "",
         currX: "",
@@ -155,42 +162,93 @@ class EditScreen extends Component {
         }
         if (type == "textfield") { pad = "5px"; }
 
+        console.log(data);
         const style = {
             // height: data["height"] + "px",
             // width: data["width"] + "px",
-            fontSize: data["font-size"] + "px",
-            backgroundColor: data["background-color"],
-            color: data["font-color"],
+            fontSize: data["fontSize"] + "px",
+            backgroundColor: data["backgroundColor"],
+            color: data["fontColor"],
             borderStyle: "solid",
-            borderColor: data["border-color"],
-            borderWidth: data["border-thickness"],
-            borderRadius: data["border-radius"],
+            borderColor: data["borderColor"],
+            borderWidth: data["borderThickness"],
+            borderRadius: data["borderRadius"],
             position: pos, 
             textAlign: textAlign,
-            // left: data["posX"],
-            // top: data["posY"],
+            // left: data["x"],
+            // top: data["y"],
             paddingLeft: pad
         }
 
-        return <Rnd
+        var element = <Rnd
             style={style}
             default={{
-                x: data["posX"],
-                y: data["posY"],
+                x: data["x"],
+                y: data["y"],
                 width: data["width"],
                 height: data["height"]
             }}
             bounds="parent"
             // size={{ width: this.state.currWidth, height: this.state.currHeight }}
             // position={{ x: this.state.currX, y: this.state.currY }}
+
+            onDragStart={(e, d) => { // original/default values
+                this.setState({ 
+                    eleX: element.props.default.x, 
+                    eleY: element.props.default.y 
+                });
+            }}
             onDragStop={(e, d) => {
-                // this.setState({ x: d.x, y: d.y });
+                this.setState({ 
+                    currX: d.x, 
+                    currY: d.y 
+                });
+                // element.props.style, default.x, defauly.y, default.width, default.height
+                // set items state with new data
+                var newItems = this.state.items;
+                var index = -1;
+                // find the value in the items list
+                /*
+                // item
+                
+                */
+                /*
+                // element
+                backgroundColor, borderColor, borderRadius, borderStyle, borderWidth: 1,
+                color, fontSize, paddingLeft, position, textAlign
+                */
+                for(index = 0; index < this.state.items.length; index++) {
+                    var dict = this.state.items[0];
+                    // console.log(element.props.style);
+                    console.log(dict);
+                    // console.log(dict["background-color"]);
+                    // console.log(element.props.style.backgroundColor);
+                    /*
+                    for(var key in dict) {
+                        var value = dict[key];
+                        
+                    }*/
+                }
+                // console.log(newItems);
+
+                /*
+                this.setState({
+
+                });
+                */
             }}
             /*
-            onClick={(e, d) => {
+            onResizeStop={(e, d) => {
                 
             }}
             */
+            onClick={(e, d) => {
+                // most recently clicked?
+                // console.log(element);
+                // console.log(element.props.style);
+                // console.log(element.props.default);
+                // console.log(element.props.default.x);
+            }}
             /*
             onResizeStop={(e, direction, ref, delta, position) => {
                 this.setState({
@@ -203,6 +261,8 @@ class EditScreen extends Component {
         >
             {data["text"]}
         </Rnd>
+
+        return element;
     }
 
     save = () => {

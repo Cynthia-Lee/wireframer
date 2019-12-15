@@ -9,16 +9,16 @@ class ControlCard extends React.Component {
             "key": "",
             "type": "",
             "text": "",
-            "font-size": 14,
-            "background-color": "",
-            "font-color": "black",
-            "border-color": "black",
-            "border-thickness": "",
-            "border-radius": "", 
+            "fontSize": 14,
+            "backgroundColor": "",
+            "fontColor": "black",
+            "borderColor": "black",
+            "borderThickness": "",
+            "borderRadius": "", 
             "width": "",
             "height": "",
-            "posX": 0,
-            "posY": 0
+            "x": 0,
+            "y": 0
         }
         return control;
     }
@@ -26,8 +26,8 @@ class ControlCard extends React.Component {
     createContainer() {
         var container = this.createControl();
         container["type"] = "container";
-        container["border-thickness"] = 2;
-        container["background-color"] = "white";
+        container["borderThickness"] = 2;
+        container["backgroundColor"] = "white";
         container["width"] = 140;
         container["height"] = 80;
         return container;
@@ -37,7 +37,7 @@ class ControlCard extends React.Component {
         var label = this.createControl();
         label["type"] = "label";
         label["text"] = "Prompt for Input:";
-        label["border-thickness"] = 0;
+        label["borderThickness"] = 0;
         label["width"] = 110;
         label["height"] = 24;
         return label;
@@ -48,10 +48,10 @@ class ControlCard extends React.Component {
         button["type"] = "button";
         button["text"] = "Submit";
         // button["textAlign"] = "center";
-        button["border-thickness"] = 2;
-        button["border-radius"] = 2;
-        button["font-size"] = 20;
-        button["background-color"] = "grey";
+        button["borderThickness"] = 2;
+        button["borderRadius"] = 2;
+        button["fontSize"] = 20;
+        button["backgroundColor"] = "grey";
         button["width"] = 110;
         button["height"] = 30;
         return button;
@@ -61,11 +61,11 @@ class ControlCard extends React.Component {
         var textfield = this.createControl();
         textfield["type"] = "textfield";
         textfield["text"] = "Input";
-        textfield["border-thickness"] = 2;
-        textfield["border-radius"] = 2;
-        textfield["font-size"] = 14;
-        textfield["font-color"] = "gray";
-        textfield["background-color"] = "white";
+        textfield["borderThickness"] = 2;
+        textfield["borderRadius"] = 2;
+        textfield["fontSize"] = 14;
+        textfield["fontColor"] = "gray";
+        textfield["backgroundColor"] = "white";
         textfield["width"] = 180;
         textfield["height"] = 24;
         return textfield;
@@ -114,18 +114,18 @@ class ControlCard extends React.Component {
         return <div className={type} style={{
             height: data["height"] + "px",
             width: data["width"] + "px",
-            fontSize: data["font-size"] + "px",
-            backgroundColor: data["background-color"],
-            color: data["font-color"],
+            fontSize: data["fontSize"] + "px",
+            backgroundColor: data["backgroundColor"],
+            color: data["fontColor"],
             borderStyle: "solid",
-            borderColor: data["border-color"],
-            borderWidth: data["border-thickness"],
-            borderRadius: data["border-radius"],
+            borderColor: data["borderColor"],
+            borderWidth: data["borderThickness"],
+            borderRadius: data["borderRadius"],
             // position: "absolute",
             position: pos, 
             textAlign: textAlign,
-            left: data["posX"],
-            top: data["posY"],
+            left: data["x"],
+            top: data["y"],
             paddingLeft: pad
         }}>
             {data["text"]}
