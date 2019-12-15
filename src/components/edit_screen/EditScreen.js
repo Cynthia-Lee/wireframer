@@ -131,24 +131,15 @@ class EditScreen extends Component {
 
     handleClick = (e) => {
         const { target } = e;
-        if (target.className != "control") {
+        // console.log(target);
+        // console.log(target.id);
+        if (target.id != "control") {
+            console.log("NOT CONTROL");
             this.setState({
                 currElement: ""
             });
         } else {
-            console.log("HELP");
-            /*
-            this.setState({
-                currElement: data,
-                text: data.text,
-                fontSize: data.fontSize,
-                backgroundColor: data.backgroundColor,
-                fontColor: data.fontColor,
-                borderColor: data.borderColor,
-                borderWidth: data.borderWidth,
-                borderRadius: data.borderRadius
-            });
-            */
+            // console.log("CONTROL");
         }
     }
 
@@ -199,7 +190,7 @@ class EditScreen extends Component {
     */
 
     initializeWireframe = () => {
-        return <div className="sandbox_wireframe" onclick={this.handleClick} style={{
+        return <div className="sandbox_wireframe" onClick={this.handleClick} style={{
             height: this.state.height + "px",
             width: this.state.width + "px",
             // transform: "scale(" + this.state.zoom + ")"
@@ -271,7 +262,7 @@ class EditScreen extends Component {
         }
 
         var element = <Rnd
-            // className="control"
+            id="control"
             style={style}
             /*
             default={{
