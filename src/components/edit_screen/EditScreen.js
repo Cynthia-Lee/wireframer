@@ -190,53 +190,25 @@ class EditScreen extends Component {
             bounds="parent"
             // size={{ width: this.state.currWidth, height: this.state.currHeight }}
             // position={{ x: this.state.currX, y: this.state.currY }}
-
+            /*
             onDragStart={(e, d) => { // original/default values
                 this.setState({ 
                     eleX: element.props.default.x, 
                     eleY: element.props.default.y 
                 });
             }}
-            onDragStop={(e, d) => {
-                this.setState({ 
-                    currX: d.x, 
-                    currY: d.y 
-                });
-                // set items state with new data
-                // item, data
-                var newItems = this.state.items;
-                var index = -1;
-                var keys = Object.keys(data);
-                for(index = 0; index < this.state.items.length; index++) {
-                    var dict = this.state.items[index];
-                    var same = true;
-                    // console.log(dict["borderColor"]);
-                    // console.log(data["borderColor"]);
-                    for(var k = 0; k < keys.length; k++) {
-                        var key = keys[k];
-                        // var value = dict[key];
-                        if (dict[key] != data[key]) {
-                            same = false;
-                        }
-                    }
-                    if (same) { // if same is still true
-                        // there is a match, found the item in items
-                        // console.log(index);
-                        data["x"] = d.x;
-                        data["y"] = d.y;
-                        // console.log(data);
-                        newItems[index] = data;
-                    }
-                }
-                // console.log(newItems[newItems.indexOf(data)]);
-                // console.log(newItems);
-                this.setState({
-                    items: newItems
-                });
+            */
+            onDragStop={(e, d) => { 
+                data.x = d.x;
+                data.y = d.y;
             }}
             /*
-            onResizeStop={(e, d) => {
-                
+            onResizeStop={(e, direction, ref, delta, position) => {
+                this.setState({
+                    width: ref.style.width,
+                    height: ref.style.height,
+                    ...position,
+                });
             }}
             */
             onClick={(e, d) => {
