@@ -37,7 +37,14 @@ class EditScreen extends Component {
         disableDimensionChange: true,
         zoom: 1,
         
-        currElement: ""
+        currElement: "",
+        text: "",
+        fontSize: "",
+        backgroundColor: "",
+        fontColor: "",
+        borderColor: "",
+        borderWidth: "",
+        borderRadius: ""
     }
     // seperating state and database wireframe
     // state will hold current changes, not changing database wireframe
@@ -255,7 +262,14 @@ class EditScreen extends Component {
                 // most recently clicked?
                 // data
                 this.setState({
-                    currElement: data
+                    currElement: data,
+                    text: data.text,
+                    fontSize: data.fontSize,
+                    backgroundColor: data.backgroundColor,
+                    fontColor: data.fontColor,
+                    borderColor: data.borderColor,
+                    borderWidth: data.borderWidth,
+                    borderRadius: data.borderRadius
                 });
             }}
         >
@@ -279,34 +293,35 @@ class EditScreen extends Component {
             for (i = 0; i < properties.length; i++) {
                 var prompt;
                 var promptField;
-                var value = element[properties[i]];
+                var val = element[properties[i]];                
+                // console.log(val);
                 if (properties[i] == "text") {
                     prompt = "";
-                    promptField = <input type="text" className={properties[i]+"_prop_field"} value={value}></input>;
+                    promptField = <input type="text" className={properties[i]+"_prop_field"} name="text" id="text" value={this.state.text} onChange={this.handleChange}></input>;
                 } else if (properties[i] == "fontSize") {
                     prompt = "Font Size:";
                     // number input
-                    promptField = <input type="number" className={properties[i]+"_prop_field"} value={value}></input>;
+                    promptField = <input type="number" className={properties[i]+"_prop_field"} value={this.state.fontSize}></input>;
                 } else if (properties[i] == "backgroundColor") {
                     prompt = "Background:";
                     // color picker
-                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={value} onchange={this.test}></input>;
+                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={this.state.backgroundColor}></input>;
                 } else if (properties[i] == "fontColor") {
                     prompt = "Font Color";
                     // color picker
-                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={value} onchange={this.test}></input>;
+                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={this.state.fontColor}></input>;
                 } else if (properties[i] == "borderColor") {
                     prompt = "Border Color";
                     // color picker
-                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={value} onchange={this.test}></input>;
+                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={this.state.borderColor}></input>;
                 } else if (properties[i] == "borderWidth") {
                     prompt = "Border Thickness";
                     // number input
-                    promptField = <input type="text" className={properties[i]+"_prop_field"} value={value}></input>;
+                    promptField = <input type="number" className={properties[i]+"_prop_field"} value={this.state.borderWidth}></input>;
                 } else if (properties[i] == "borderRadius") {
                     prompt = "Border Radius";
                     // number input
-                    promptField = <input type="text" className={properties[i]+"_prop_field"} value={value}></input>;
+                    promptField = <input type="number" className={properties[i]+"_prop_field"} value={this.state.borderRadius}></input>;
                 }
                 var div = <div className={properties[i]+"_prop"}>
                     <div className={properties[i]+"_prop_prompt"}>{prompt}</div>
@@ -375,7 +390,7 @@ class EditScreen extends Component {
                         <button className="toolbar_button col" onClick={this.save}>Save</button>
                         <button className="toolbar_button col" onClick={this.close}>Close</button>
                     </div>
-                    <div className="control_properties_container row purple">
+                    <div className="control_properties_container row">
                         <div className="control_properties">
                             <div className="properties_title">Properties</div>
                             {this.initializeProperties()}
