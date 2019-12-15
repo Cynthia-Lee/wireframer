@@ -65,6 +65,14 @@ class EditScreen extends Component {
     processDelete(event) {
         if(event.keyCode === 46) { // delete key
             const items = this.state.items;
+            /*
+            if (this.state.currElement) {
+                items.splice((items.indexOf(this.state.currElement)), 1);
+                this.setState({
+                    currElement: ""
+                });
+            }
+            */
             items.splice((items.indexOf(this.state.currElement)), 1);
             this.setState({
                 currElement: ""
@@ -72,14 +80,21 @@ class EditScreen extends Component {
         }
     }
     
-    componentDidMount(){
+    componentDidMount() {
         document.addEventListener("keydown", this.processCtrlD, false);
         document.addEventListener("keydown", this.processDelete, false);
     }
     
-    componentWillUnmount(){
+    componentWillUnmount() {
         document.removeEventListener("keydown", this.processCtrlD, false);
         document.addEventListener("keydown", this.processDelete, false);
+    }
+
+    updateCurrElement = (event, element) => {
+        event.preventDefault();
+        this.setState({
+            currElement: element
+        });
     }
 
     handleChange = (e) => {
@@ -184,6 +199,9 @@ class EditScreen extends Component {
             "x": 22,
             "y": 30
         */
+        if (data == "") {
+            console.log("HELP");
+        }
         var type = data["type"];
         var pad = "";
         // console.log(data["position"]);
@@ -225,7 +243,7 @@ class EditScreen extends Component {
             */
             bounds="parent"
             size={{ width: data["width"], height: data["height"] }}
-            position={{ x: data["x"], y: data["y"] }}
+            position={{ x: data.x, y: data.y }}
             onDragStop={(e, d) => { 
                 data.x = d.x;
                 data.y = d.y;

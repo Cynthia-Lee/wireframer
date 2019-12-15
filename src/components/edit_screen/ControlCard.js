@@ -13,7 +13,7 @@ class ControlCard extends React.Component {
             "backgroundColor": "",
             "fontColor": "black",
             "borderColor": "black",
-            "borderThickness": "",
+            "borderWidth": "",
             "borderRadius": "", 
             "width": "",
             "height": "",
@@ -26,7 +26,7 @@ class ControlCard extends React.Component {
     createContainer() {
         var container = this.createControl();
         container["type"] = "container";
-        container["borderThickness"] = 2;
+        container["borderWidth"] = 2;
         container["backgroundColor"] = "white";
         container["width"] = 140;
         container["height"] = 80;
@@ -37,7 +37,7 @@ class ControlCard extends React.Component {
         var label = this.createControl();
         label["type"] = "label";
         label["text"] = "Prompt for Input:";
-        label["borderThickness"] = 0;
+        label["borderWidth"] = 0;
         label["width"] = 110;
         label["height"] = 24;
         return label;
@@ -48,7 +48,7 @@ class ControlCard extends React.Component {
         button["type"] = "button";
         button["text"] = "Submit";
         // button["textAlign"] = "center";
-        button["borderThickness"] = 2;
+        button["borderWidth"] = 2;
         button["borderRadius"] = 2;
         button["fontSize"] = 20;
         button["backgroundColor"] = "grey";
@@ -61,7 +61,7 @@ class ControlCard extends React.Component {
         var textfield = this.createControl();
         textfield["type"] = "textfield";
         textfield["text"] = "Input";
-        textfield["borderThickness"] = 2;
+        textfield["borderWidth"] = 2;
         textfield["borderRadius"] = 2;
         textfield["fontSize"] = 14;
         textfield["fontColor"] = "gray";
@@ -119,7 +119,7 @@ class ControlCard extends React.Component {
             color: data["fontColor"],
             borderStyle: "solid",
             borderColor: data["borderColor"],
-            borderWidth: data["borderThickness"],
+            borderWidth: data["borderWidth"],
             borderRadius: data["borderRadius"],
             // position: "absolute",
             position: pos, 
