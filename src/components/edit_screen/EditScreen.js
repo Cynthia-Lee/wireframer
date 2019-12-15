@@ -84,6 +84,12 @@ class EditScreen extends Component {
         });
     }
 
+    updateItems = (data) => {
+        this.setState({
+            items: data 
+        });
+    }
+
     /*
     confirmDeleteList = () => {
         const fireStore = getFirestore();
@@ -177,6 +183,8 @@ class EditScreen extends Component {
     }
 
     close = () => {
+        // console.log(this.state.items);
+        // this.updateState();
         this.props.history.goBack();
     }
 
@@ -205,7 +213,7 @@ class EditScreen extends Component {
                             </button>
                         </div>
                     </div>
-                    <ControlList createItem={this.createItem} items={this.state.items} />
+                    <ControlList createItem={this.createItem} items={this.state.items} updateItems={this.updateItems} />
                 </div>
                 <div className="wireframe_container col s8 white">
                     {this.initializeWireframe()}

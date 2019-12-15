@@ -1,6 +1,6 @@
 import React from 'react';
-import { Icon, Button } from 'react-materialize';
-import { getFirestore } from 'redux-firestore';
+// import { Icon, Button } from 'react-materialize';
+// import { getFirestore } from 'redux-firestore';
 
 class ControlCard extends React.Component {
     
@@ -89,9 +89,14 @@ class ControlCard extends React.Component {
         } else {
             return "";
         }
-        // console.log(data);
+
         itemList.push(data);
-        // console.log(itemList);
+        this.props.updateItems(itemList);
+        /*
+        this.setState({
+            items: itemList
+        });
+        */
     }
 
     controlCard = (type) => {
