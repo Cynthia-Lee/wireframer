@@ -12,6 +12,7 @@ class EditScreen extends Component {
     constructor(props){
         super(props);
         this.processCtrlD = this.processCtrlD.bind(this);
+        this.processDelete = this.processDelete.bind(this);
     }
 
     /* 
@@ -60,13 +61,25 @@ class EditScreen extends Component {
             });
         }
     }
+
+    processDelete(event) {
+        if(event.keyCode === 46) { // delete key
+            const items = this.state.items;
+            items.splice((items.indexOf(this.state.currElement)), 1);
+            this.setState({
+                currElement: ""
+            });
+        }
+    }
     
     componentDidMount(){
         document.addEventListener("keydown", this.processCtrlD, false);
+        document.addEventListener("keydown", this.processDelete, false);
     }
     
     componentWillUnmount(){
         document.removeEventListener("keydown", this.processCtrlD, false);
+        document.addEventListener("keydown", this.processDelete, false);
     }
 
     handleChange = (e) => {
@@ -202,15 +215,17 @@ class EditScreen extends Component {
 
         var element = <Rnd
             style={style}
+            /*
             default={{
                 x: data["x"],
                 y: data["y"],
                 width: data["width"],
                 height: data["height"]
             }}
+            */
             bounds="parent"
-            // size={{ width: this.state.currWidth, height: this.state.currHeight }}
-            // position={{ x: this.state.currX, y: this.state.currY }}
+            size={{ width: data["width"], height: data["height"] }}
+            position={{ x: data["x"], y: data["y"] }}
             onDragStop={(e, d) => { 
                 data.x = d.x;
                 data.y = d.y;
