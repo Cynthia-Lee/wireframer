@@ -160,11 +160,11 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .wireframe_options {
-  height: 16%;
+  height: 17%;
 }
 
 .control_list_container {
-  height: 84%;
+  height: 83%;
 }
 
 .edit_control_properties {
@@ -189,8 +189,15 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 #checkWidth, #checkHeight {
-  width: 70px;
-  margin-right: 15px;
+  width: 65px;
+}
+
+#checkWidth {
+  margin-right: 10px;
+}
+
+.update_dimensions_button {
+  margin-left: 11px;
 }
 
 .wireframe_container { 
