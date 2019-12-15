@@ -99,21 +99,54 @@ class ControlCard extends React.Component {
         */
     }
 
+    createItem = (data) => {
+        var type = data["type"];
+        var pad = "";
+        var pos = data["position"] ? data["position"] : "";
+        var textAlign = data["textAlign"] ? data["textAlign"] : "";
+        if (type == "button") { 
+            textAlign = "center"; 
+        } else {
+            textAlign = "left";
+        }
+        if (type == "textfield") { pad = "5px"; }
+        
+        return <div className={type} style={{
+            height: data["height"] + "px",
+            width: data["width"] + "px",
+            fontSize: data["font-size"] + "px",
+            backgroundColor: data["background-color"],
+            color: data["font-color"],
+            borderStyle: "solid",
+            borderColor: data["border-color"],
+            borderWidth: data["border-thickness"],
+            borderRadius: data["border-radius"],
+            // position: "absolute",
+            position: pos, 
+            textAlign: textAlign,
+            left: data["posX"],
+            top: data["posY"],
+            paddingLeft: pad
+        }}>
+            {data["text"]}
+        </div>
+    }
+
     controlCard = (type) => {
         var controlOptions = ["container", "label", "button", "textfield"];
         var control;
         var prompt = "";
         if (type == controlOptions[0]) {
-            control = this.props.createItem(this.createContainer());
+            control = this.createItem(this.createContainer());
             prompt = "Container";
         } else if (type == controlOptions[1]) {
-            control = this.props.createItem(this.createLabel());
+            control = this.createItem(this.createLabel());
             prompt = "Label";
         } else if (type == controlOptions[2]) {
-            control = this.props.createItem(this.createButton());
+            control = this.createItem(this.createButton());
             prompt = "Button";
         } else if (type == controlOptions[3]) {
-            control = this.props.createItem(this.createTextfield());
+            control = this.createItem(this.createTextfield());
             prompt = "Textfield";
         } else {
             return "";

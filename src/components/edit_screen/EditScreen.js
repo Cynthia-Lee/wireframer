@@ -6,6 +6,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 import { Modal, Button, Icon } from 'react-materialize';
 import ControlList from './ControlList';
+import { Rnd } from "react-rnd";
 
 class EditScreen extends Component {
     /* 
@@ -28,7 +29,13 @@ class EditScreen extends Component {
         checkWidth: this.props.wireframe.width,
         checkHeight: this.props.wireframe.height,
         disableDimensionChange: true,
-        zoom: 1
+        zoom: 1,
+
+        currElement: "",
+        currWidth: "",
+        currHeight: "",
+        currX: "",
+        currY: ""
     }
     // seperating state and database wireframe
     // state will hold current changes, not changing database wireframe
@@ -147,9 +154,10 @@ class EditScreen extends Component {
             textAlign = "left";
         }
         if (type == "textfield") { pad = "5px"; }
-        return <div className={type} style={{
-            height: data["height"] + "px",
-            width: data["width"] + "px",
+
+        const style = {
+            // height: data["height"] + "px",
+            // width: data["width"] + "px",
             fontSize: data["font-size"] + "px",
             backgroundColor: data["background-color"],
             color: data["font-color"],
@@ -157,15 +165,41 @@ class EditScreen extends Component {
             borderColor: data["border-color"],
             borderWidth: data["border-thickness"],
             borderRadius: data["border-radius"],
-            // position: "absolute",
             position: pos, 
             textAlign: textAlign,
-            left: data["posX"],
-            top: data["posY"],
+            // left: data["posX"],
+            // top: data["posY"],
             paddingLeft: pad
-        }}>
+        }
+
+        return <Rnd
+            style={style}
+            default={{
+                x: data["posX"],
+                y: data["posY"],
+                width: data["width"],
+                height: data["height"]
+            }}
+            
+            // size={{ width: this.state.currWidth, height: this.state.currHeight }}
+            // position={{ x: this.state.currX, y: this.state.currY }}
+            /*
+            onDragStop={(e, d) => {
+                this.setState({ x: d.x, y: d.y });
+            }}
+            */
+            /*
+            onResizeStop={(e, direction, ref, delta, position) => {
+                this.setState({
+                    currWidth: ref.style.width,
+                    currHeight: ref.style.height,
+                    ...position
+                });
+            }}
+            */
+        >
             {data["text"]}
-        </div>
+        </Rnd>
     }
 
     save = () => {
