@@ -119,6 +119,39 @@ class EditScreen extends Component {
         }), function () { this.checkDimensions() });
     }
 
+    handlePropChange = (e, prop) => {
+        const { target } = e;
+        // update that item's text
+
+        this.setState(state => ({
+            ...state,
+            [target.id]: target.value,
+        }), function() { this.state.currElement.text = this.state.text });
+    }
+
+    handleClick = (e) => {
+        const { target } = e;
+        if (target.className != "control") {
+            this.setState({
+                currElement: ""
+            });
+        } else {
+            console.log("HELP");
+            /*
+            this.setState({
+                currElement: data,
+                text: data.text,
+                fontSize: data.fontSize,
+                backgroundColor: data.backgroundColor,
+                fontColor: data.fontColor,
+                borderColor: data.borderColor,
+                borderWidth: data.borderWidth,
+                borderRadius: data.borderRadius
+            });
+            */
+        }
+    }
+
     checkDimensions = () => {
         if (this.state.checkWidth < 1 || this.state.checkWidth > 5000 || this.state.checkHeight < 1 || this.state.checkHeight > 5000) {
             this.setState({
@@ -166,7 +199,7 @@ class EditScreen extends Component {
     */
 
     initializeWireframe = () => {
-        return <div className="sandbox_wireframe" style={{
+        return <div className="sandbox_wireframe" onclick={this.handleClick} style={{
             height: this.state.height + "px",
             width: this.state.width + "px",
             // transform: "scale(" + this.state.zoom + ")"
@@ -238,6 +271,7 @@ class EditScreen extends Component {
         }
 
         var element = <Rnd
+            // className="control"
             style={style}
             /*
             default={{
@@ -258,6 +292,7 @@ class EditScreen extends Component {
                 data.width = ref.style.width;
                 data.height = ref.style.height;
             }}
+            
             onClick={(e, d) => {
                 // most recently clicked?
                 // data
@@ -272,6 +307,7 @@ class EditScreen extends Component {
                     borderRadius: data.borderRadius
                 });
             }}
+            
         >
             {data["text"]}
         </Rnd>
@@ -297,7 +333,7 @@ class EditScreen extends Component {
                 // console.log(val);
                 if (properties[i] == "text") {
                     prompt = "";
-                    promptField = <input type="text" className={properties[i]+"_prop_field"} name="text" id="text" value={this.state.text} onChange={this.handleChange}></input>;
+                    promptField = <input type="text" className={properties[i]+"_prop_field"} name="text" id="text" value={this.state.text} onChange={(e) => this.handlePropChange(e, "text")}></input>;
                 } else if (properties[i] == "fontSize") {
                     prompt = "Font Size:";
                     // number input
