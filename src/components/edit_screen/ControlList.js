@@ -8,18 +8,18 @@ import { getFirestore } from 'redux-firestore';
 
 class ControlList extends React.Component {
     render() {
-        // const wireframe = this.props.wireframe;
-        // const controlOptions = ["container", "label", "button", "textfield"];
+        const wireframe = this.props.wireframe;
+        const items = this.props.items;
         const createItem = this.props.createItem;
-        const items = ["container", "label", "button", "textfield"];
+        const options = ["container", "label", "button", "textfield"];
         return (
             <div className="control_list_container row">
                 <div className="control_list">
-                    {items && items.map(function (item) {
+                    {options && options.map(function (type) {
                         // item.id = items.indexOf(item);
                         // console.log(item.id);
                         return (
-                            <ControlCard item={item} createItem={createItem} />
+                            <ControlCard type={type} createItem={createItem} items={items} wireframe={wireframe} />
                         );
                     })
                     }

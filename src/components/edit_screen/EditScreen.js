@@ -41,14 +41,6 @@ class EditScreen extends Component {
             ...state,
             [target.id]: target.value,
         }));
-
-        /*
-        // update the store
-        const fireStore = getFirestore();
-        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
-            [target.id]: target.value,
-        });
-        */
     }
 
     handleDimensionChange = (e) => {
@@ -77,18 +69,6 @@ class EditScreen extends Component {
             width: this.state.checkWidth,
             height: this.state.checkHeight
         });
-
-        // console.log(this.state.width);
-        // console.log(this.state.height);
-
-        /*
-        // update the store
-        const fireStore = getFirestore();
-        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
-            width: wireframe.width,
-            height: wireframe.height
-        });
-        */
     }
 
     zoomIn = () => {
@@ -96,7 +76,6 @@ class EditScreen extends Component {
         this.setState({
             zoom: this.state.zoom * 2
         });
-        //}, function () { console.log(this.state.zoom); });
     }
 
     zoomOut = () => {
@@ -114,7 +93,6 @@ class EditScreen extends Component {
     */
 
     initializeWireframe = () => {
-        // const wireframe = this.props.wireframe;
         return <div className="sandbox_wireframe" style={{
             height: this.state.height + "px",
             width: this.state.width + "px",
@@ -125,7 +103,6 @@ class EditScreen extends Component {
     }
 
     initializeItems = () => {
-        // const wireframe = this.props.wireframe;
         var i = 0;
         var divItems = [];
         var d;
@@ -199,9 +176,12 @@ class EditScreen extends Component {
         });
     }
 
+    close = () => {
+        this.props.history.goBack();
+    }
+
     render() {
         const auth = this.props.auth;
-        // const wireframe = this.props.wireframe;
         if (!auth.uid) {
             return <Redirect to="/" />;
         }
@@ -225,7 +205,7 @@ class EditScreen extends Component {
                             </button>
                         </div>
                     </div>
-                    <ControlList createItem={this.createItem} />
+                    <ControlList createItem={this.createItem} items={this.state.items} />
                 </div>
                 <div className="wireframe_container col s8 white">
                     {this.initializeWireframe()}
@@ -235,7 +215,7 @@ class EditScreen extends Component {
                         <div className="zoom_toolbar_button col" onClick={this.zoomIn}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
                         <div className="zoom_toolbar_button col" onClick={this.zoomOut}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
                         <button className="toolbar_button col" onClick={this.save}>Save</button>
-                        <button className="toolbar_button col">Close</button>
+                        <button className="toolbar_button col" onClick={this.close}>Close</button>
                     </div>
                     <div className="edit_control_properties row purple">
                         properties

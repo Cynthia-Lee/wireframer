@@ -71,65 +71,59 @@ class ControlCard extends React.Component {
         return textfield;
     }
 
-    /*
     addItem = (type) => {
-        var itemList = this.props.wireframe.items;
+        // console.log(type);
+        var itemList = this.props.items;
+        // console.log(itemList);
         // var itemKey = this.createItemKey();
         var itemOptions = ["container", "label", "button", "textfield"];
-        var control;
-        if (item == itemOptions[0]) {
-            control = this.props.createItem(this.createContainer());            
-        } else if (item == itemOptions[1]) {
-            control = this.props.createItem(this.createLabel());
-        } else if (item == itemOptions[2]) {
-            control = this.props.createItem(this.createButton());
-        } else if (item == itemOptions[3]) {
-            control = this.props.createItem(this.createTextfield());
+        var data;
+        if (type == itemOptions[0]) {
+            data = this.createContainer();
+        } else if (type == itemOptions[1]) {
+            data = this.createLabel();
+        } else if (type == itemOptions[2]) {
+            data = this.createButton();
+        } else if (type == itemOptions[3]) {
+            data = this.createTextfield();
         } else {
             return "";
         }
-        
-        itemList.append(control);
-
-        // update the store
-        const fireStore = getFirestore();
-        fireStore.collection('wireframeList').doc(this.props.wireframe.id).update({
-            items: itemList,
-        });
+        // console.log(data);
+        itemList.push(data);
+        // console.log(itemList);
     }
-    */
 
-    controlCard = (item) => {
-        var itemOptions = ["container", "label", "button", "textfield"];
+    controlCard = (type) => {
+        var controlOptions = ["container", "label", "button", "textfield"];
         var control;
         var prompt = "";
-        var addControl = "";
-        if (item == itemOptions[0]) {
+        if (type == controlOptions[0]) {
             control = this.props.createItem(this.createContainer());
             prompt = "Container";
-            
-        } else if (item == itemOptions[1]) {
+        } else if (type == controlOptions[1]) {
             control = this.props.createItem(this.createLabel());
             prompt = "Label";
-        } else if (item == itemOptions[2]) {
+        } else if (type == controlOptions[2]) {
             control = this.props.createItem(this.createButton());
             prompt = "Button";
-        } else if (item == itemOptions[3]) {
+        } else if (type == controlOptions[3]) {
             control = this.props.createItem(this.createTextfield());
             prompt = "Textfield";
         } else {
             return "";
         }
-        return <div className="control_card">
+        return (<div className="control_card">
             <div className="preview_control">
                 {control}
             </div>
             <div className="control_prompt">{prompt}</div>
-            <button className="button" onClick={addControl}>
+            <button className="button" onClick={() => this.addItem(type)}>
                 Add {prompt}
             </button>
-        </div>
+        </div>);
     }
+    
     /*
     updateItemIds() {
         var itemList = this.props.todoList.items;
@@ -155,48 +149,10 @@ class ControlCard extends React.Component {
     }
     */
 
-    /*
-    moveDownItem = e => {
-        e.preventDefault();
-        const { item } = this.props;
-        var itemList = this.props.todoList.items;
-        var itemIndex = itemList.indexOf(item); // swap
-        let temp = itemList[itemIndex + 1];
-        itemList[itemIndex + 1] = item;
-        itemList[itemIndex] = temp;
-        // update the store
-        item.id = itemIndex + 1;
-        temp.id = itemIndex;
-        // this.updateItemIds();
-        const fireStore = getFirestore();
-        fireStore.collection('todoLists').doc(this.props.todoList.id).update({
-            items: itemList,
-        });
-    }
-
-    moveUpItem = e => {
-        e.preventDefault();
-        const { item } = this.props;
-        var itemList = this.props.todoList.items;
-        var itemIndex = itemList.indexOf(item); // swap
-        let temp = itemList[itemIndex - 1];
-        itemList[itemIndex - 1] = item;
-        itemList[itemIndex] = temp;
-        // update the store
-        item.id = itemIndex - 1;
-        temp.id = itemIndex;
-        // this.updateItemIds();
-        const fireStore = getFirestore();
-        fireStore.collection('todoLists').doc(this.props.todoList.id).update({
-            items: itemList,
-        });
-    }
-    */
-
     render() {
-        const item = this.props.item;
+        const type = this.props.type;
         return (
-            this.controlCard(item)
+            this.controlCard(type)
         );
     }
 }
