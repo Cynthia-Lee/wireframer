@@ -298,7 +298,7 @@ class EditScreen extends Component {
                 } else if (properties[i] == "borderColor") {
                     prompt = "Border Color";
                     // color picker
-                    promptField = "";
+                    promptField = <input type="color" className={properties[i]+"_prop_field"} value={value} onchange={this.test}></input>;
                 } else if (properties[i] == "borderWidth") {
                     prompt = "Border Thickness";
                     // number input
