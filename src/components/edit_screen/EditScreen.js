@@ -180,12 +180,15 @@ class EditScreen extends Component {
                 width: data["width"],
                 height: data["height"]
             }}
-            
+            bounds="parent"
             // size={{ width: this.state.currWidth, height: this.state.currHeight }}
             // position={{ x: this.state.currX, y: this.state.currY }}
-            /*
             onDragStop={(e, d) => {
-                this.setState({ x: d.x, y: d.y });
+                // this.setState({ x: d.x, y: d.y });
+            }}
+            /*
+            onClick={(e, d) => {
+                
             }}
             */
             /*
