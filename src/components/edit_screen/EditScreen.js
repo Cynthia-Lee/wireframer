@@ -161,23 +161,26 @@ class EditScreen extends Component {
         this.setState(state => ({
             ...state,
             [target.id]: target.value,
-        }));
-        // }), function() { console.log(this.state.text) });
+        }), function() { this.updateProp(prop) });
+        // }));
+    }
 
+    updateProp = (prop) => {
         if (prop == "text") {
             this.state.currElement.text = this.state.text;
         } else if (prop == "fontSize") {
             this.state.currElement.fontSize = this.state.fontSize;
         } else if (prop == "backgroundColor") {
             // ADD
+            // this.state.currElement.backgroundColor = this.state.backgroundColor;
         } else if (prop == "fontColor") {
             // ADD
         } else if (prop == "borderColor") {
             // ADD
         } else if (prop == "borderWidth") {
-            // this.state.currElement.borderWidth = this.state.borderWidth;
+            this.state.currElement.borderWidth = this.state.borderWidth;
         } else if (prop == "borderRadius") {
-            // this.state.currElement.borderRadius = this.state.borderRadius;
+            this.state.currElement.borderRadius = this.state.borderRadius;
         }
     }
 
@@ -204,9 +207,8 @@ class EditScreen extends Component {
                     prompt = "Font Size:"; // number input
                     promptField = <input type="number" className={properties[i] + "_prop_field"} name="fontSize" id="fontSize" value={this.state.fontSize} onChange={(e) => this.handlePropChange(e, "fontSize")}></input>;
                 } else if (properties[i] == "backgroundColor") { // ADD
-                    prompt = "Background:"; 
-                    // color picker
-                    promptField = <input type="color" className={properties[i] + "_prop_field"} name="backgroundColor" id="backgroundColor" value={this.state.backgroundColor}></input>;
+                    prompt = "Background:"; // color picker
+                    promptField = <input type="color" className={properties[i] + "_prop_field"} name="backgroundColor" id="backgroundColor" value={this.state.backgroundColor} onChange={(e) => this.handlePropChange(e, "backgroundColor")}></input>;
                 } else if (properties[i] == "fontColor") { // ADD
                     prompt = "Font Color";
                     // color picker
@@ -298,8 +300,8 @@ class EditScreen extends Component {
             color: data["fontColor"],
             borderStyle: "solid",
             borderColor: data["borderColor"],
-            borderWidth: data["borderWidth"],
-            borderRadius: data["borderRadius"],
+            borderWidth: data["borderWidth"] + "px",
+            borderRadius: data["borderRadius"] + "px",
             position: pos,
             textAlign: textAlign,
             // left: data["x"],

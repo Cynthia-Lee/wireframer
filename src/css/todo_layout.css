@@ -155,7 +155,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .edit_toolbar {
-  height: 5%;
+  height: 6%;
   padding-top: 1%;
 }
 
@@ -164,7 +164,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 }
 
 .control_list_container {
-  height: 83%;
+  height: 84%;
 }
 
 .control_properties_container {
