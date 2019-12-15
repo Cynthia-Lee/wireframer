@@ -46,37 +46,32 @@ class EditScreen extends Component {
     processCtrlD(event){
         if(event.ctrlKey && event.keyCode === 68) { // control & D
             event.preventDefault();
-            var copy = {};
-            // console.log(this.state.currElement);
-            for(var key in this.state.currElement)
-            {
-                copy[key] = this.state.currElement[key];
+            if (this.state.currElement) {
+                var copy = {};
+                // console.log(this.state.currElement);
+                for(var key in this.state.currElement) {
+                    copy[key] = this.state.currElement[key];
+                }
+                copy["x"] = copy["x"] + 100;
+                copy["y"] = copy["y"] + 100;
+                // console.log(copy);
+                this.state.items.push(copy);
+                this.setState({
+                    currElement: copy
+                });
             }
-            copy["x"] = copy["x"] + 100;
-            copy["y"] = copy["y"] + 100;
-            // console.log(copy);
-            this.state.items.push(copy);
-            this.setState({
-                currElement: copy
-            });
         }
     }
 
     processDelete(event) {
         if(event.keyCode === 46) { // delete key
-            const items = this.state.items;
-            /*
             if (this.state.currElement) {
+                const items = this.state.items;
                 items.splice((items.indexOf(this.state.currElement)), 1);
                 this.setState({
                     currElement: ""
                 });
             }
-            */
-            items.splice((items.indexOf(this.state.currElement)), 1);
-            this.setState({
-                currElement: ""
-            });
         }
     }
     
