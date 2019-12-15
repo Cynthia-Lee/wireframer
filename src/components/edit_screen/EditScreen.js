@@ -271,7 +271,7 @@ class EditScreen extends Component {
     }
 
     initializeWireframe = () => {
-        return <div className="sandbox_wireframe" onClick={this.handleClick} style={{
+        return <div className="sandbox_wireframe" id="sandbox_wireframe" onClick={this.handleClick} style={{
             height: this.state.height + "px",
             width: this.state.width + "px",
             // transform: "scale(" + this.state.zoom + ")"
@@ -290,6 +290,13 @@ class EditScreen extends Component {
             divItems.push(this.createItem(d));
         }
         return divItems;
+    }
+
+    handleResize = () => {
+        this.setState(state => ({
+            name: this.state.name
+        }), function () { document.getElementById("sandbox_wireframe").click() });
+        // document.getElementById(){"sandbox_wireframe"}.click()
     }
 
     createItem = (data) => {
@@ -358,6 +365,10 @@ class EditScreen extends Component {
             onResizeStop={(e, direction, ref, delta, position) => {
                 data.width = ref.style.width;
                 data.height = ref.style.height;
+                // change position
+                data.x = position.x;
+                data.y = position.y;
+                this.handleResize();
             }}
             onClick={(e, d) => {
                 // most recently clicked?
