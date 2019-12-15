@@ -46,7 +46,9 @@ class EditScreen extends Component {
         borderWidth: "",
         borderRadius: "",
 
-        testy: ""
+        original: this.props.wireframe.items,
+        edited: false, 
+        showModal: false
     }
     // seperating state and database wireframe
     // state will hold current changes, not changing database wireframe
@@ -98,6 +100,28 @@ class EditScreen extends Component {
         this.setState({
             items: data
         });
+    }
+
+    checkEdited = () => {
+        // let val = (this.state.original != this.state.items);
+        let val = false;
+        console.log(val);
+        this.setState({
+            edited: val
+        });
+        return val;
+    }
+
+    handleClose = () => {
+        // show modal
+        if (this.checkEdited()) { // if it was edited, prompt the modal
+            this.setState({
+                showModal: true
+            });
+        } else {
+            // exit
+            this.close();
+        }
     }
 
     handleChange = (e) => {
@@ -228,14 +252,6 @@ class EditScreen extends Component {
             return divList;
         }
     }
-
-    /*
-    confirmDeleteList = () => {
-        const fireStore = getFirestore();
-        fireStore.collection('wireframeList').doc(this.props.wireframe.id).delete();
-        this.props.history.push('/'); // go to home screen
-    }
-    */
 
     initializeWireframe = () => {
         return <div className="sandbox_wireframe" onClick={this.handleClick} style={{
@@ -375,10 +391,10 @@ class EditScreen extends Component {
     }
 
     close = () => {
-        // console.log(this.state.items);
-        // this.updateState();
         this.props.history.goBack();
     }
+
+    
 
     render() {
         const auth = this.props.auth;
@@ -407,6 +423,7 @@ class EditScreen extends Component {
                     </div>
                     <ControlList createItem={this.createItem} items={this.state.items} updateItems={this.updateItems} />
                 </div>
+
                 <div className="wireframe_container col s8 white">
                     {this.initializeWireframe()}
                 </div>
@@ -415,7 +432,21 @@ class EditScreen extends Component {
                         <div className="zoom_toolbar_button col" onClick={this.zoomIn}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
                         <div className="zoom_toolbar_button col" onClick={this.zoomOut}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
                         <button className="toolbar_button col" onClick={this.save}>Save</button>
-                        <button className="toolbar_button col" onClick={this.close}>Close</button>
+                        <Modal className="close_wireframe_modal" header="Close Wireframe?"
+                            actions={
+                                <div class="close_wireframe_modal">
+                                    <div className="confirm_close_button modal-close waves-effect waves-light green btn-flat" onClick={this.close}><i className="material-icons left">check</i>Yes</div>
+                                    <div className="modal-close waves-effect waves-light red btn-flat"><i className="material-icons left">close</i>No</div>
+                                </div>
+                            }
+                            trigger={<button className="toolbar_button col" onClick={this.handleClose}>Close</button>} 
+                            show={false}
+                            options={{ dismissible: false }}>
+                            <div class="close_wireframe_modal_content">
+                                <p>Are you sure you want to close this wireframe?</p>
+                                <p>Your recent changes will not be saved.</p>
+                            </div>
+                        </Modal>
                     </div>
                     <div className="control_properties_container row">
                         <div className="control_properties">

@@ -29,6 +29,14 @@ class HomeScreen extends Component {
         });
     }
 
+    /*
+    confirmDeleteList = () => {
+        const fireStore = getFirestore();
+        fireStore.collection('wireframeList').doc(this.props.wireframe.id).delete();
+        this.props.history.push('/'); // go to home screen
+    }
+    */
+
     render() {
         if (!this.props.auth.uid) {
             return <Redirect to="/login" />;
