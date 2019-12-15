@@ -9,6 +9,26 @@ import ControlList from './ControlList';
 import { Rnd } from "react-rnd";
 
 class EditScreen extends Component {
+    constructor(props){
+        super(props);
+        this.processCtrlD = this.processCtrlD.bind(this);
+    }
+
+    processCtrlD(event){
+        if(event.ctrlKey && event.keyCode === 68) { // control & D
+            event.preventDefault();
+            
+        }
+    }
+    
+    componentDidMount(){
+        document.addEventListener("keydown", this.processCtrlD, false);
+    }
+    
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.processCtrlD, false);
+    }
+
     /* 
     "key": 1,
     "user": "6Ky2ocJRtPW6270wXJbLZAwRamH3",
@@ -30,8 +50,9 @@ class EditScreen extends Component {
         checkHeight: this.props.wireframe.height,
         disableDimensionChange: true,
         zoom: 1,
+        
+        currElement: ""
         /*
-        currElement: "",
         // old values of element, size and position
         eleWidth: "",
         eleHeight: "",
@@ -199,15 +220,13 @@ class EditScreen extends Component {
                 data.width = ref.style.width;
                 data.height = ref.style.height;
             }}
-            /*
             onClick={(e, d) => {
                 // most recently clicked?
-                // console.log(element);
-                // console.log(element.props.style);
-                // console.log(element.props.default);
-                // console.log(element.props.default.x);
+                // data
+                this.setState({
+                    currElement: data
+                });
             }}
-            */
         >
             {data["text"]}
         </Rnd>
