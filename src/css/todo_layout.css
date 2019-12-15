@@ -150,7 +150,7 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   background-color: #eeeeee;
 }
 
-.wireframe_options, .control_list, .edit_toolbar, .edit_control_properties {
+.wireframe_options, .control_list, .edit_toolbar, .control_properties_container {
   margin-bottom: 0px;
 }
 
@@ -167,11 +167,11 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
   height: 83%;
 }
 
-.edit_control_properties {
+.control_properties_container {
   height: 93%;
 }
 
-.edit_wireframe, .wireframe_options, .edit_toolbar, .edit_control_properties, .control_list_container {
+.edit_wireframe, .wireframe_options, .edit_toolbar, .control_properties_container, .control_list_container {
   overflow: auto;
 }
 

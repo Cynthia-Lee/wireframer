@@ -85,12 +85,14 @@ class EditScreen extends Component {
         document.addEventListener("keydown", this.processDelete, false);
     }
 
+    /*
     updateCurrElement = (event, element) => {
-        event.preventDefault();
         this.setState({
             currElement: element
         });
+        console.log("TEST");
     }
+    */
 
     handleChange = (e) => {
         const { target } = e;
@@ -194,9 +196,11 @@ class EditScreen extends Component {
             "x": 22,
             "y": 30
         */
+        /*
         if (data == "") {
             console.log("HELP");
         }
+        */
         var type = data["type"];
         var pad = "";
         // console.log(data["position"]);
@@ -261,6 +265,27 @@ class EditScreen extends Component {
         return element;
     }
 
+    initializeProperties = () => {
+        const element = this.state.currElement;
+        if (element) {
+            var divList = [];
+            // var properties = Object.keys(this.state.currElement);
+            var properties = ["text", "fontSize", "backgroundColor", "borderColor", "borderWidth", "borderRadius"];
+            if (element.type == "container") {
+                properties.splice(0, 1); // containers do not have text
+            }
+            // container, label, button, textfield
+            var i;
+            for (i = 0; i < properties.length; i++) {
+                var div = <div className={properties[i]+"_prop"}>
+                    hi
+                </div>
+                divList.push(div);
+            }
+            return divList;
+        }   
+    }
+
     save = () => {
         // update the store
         // save data from state to wireframe in the database
@@ -318,8 +343,11 @@ class EditScreen extends Component {
                         <button className="toolbar_button col" onClick={this.save}>Save</button>
                         <button className="toolbar_button col" onClick={this.close}>Close</button>
                     </div>
-                    <div className="edit_control_properties row purple">
-                        properties
+                    <div className="control_properties_container row purple">
+                        <div className="control_properties">
+                            <div className="properties_title">Properties</div>
+                            {this.initializeProperties()}
+                        </div>
                     </div>
                 </div>
             </div>
