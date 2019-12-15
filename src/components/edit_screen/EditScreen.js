@@ -30,7 +30,7 @@ class EditScreen extends Component {
         checkHeight: this.props.wireframe.height,
         disableDimensionChange: true,
         zoom: 1,
-
+        /*
         currElement: "",
         // old values of element, size and position
         eleWidth: "",
@@ -43,6 +43,7 @@ class EditScreen extends Component {
         currHeight: "",
         currX: "",
         currY: ""
+        */
     }
     // seperating state and database wireframe
     // state will hold current changes, not changing database wireframe
@@ -190,41 +191,21 @@ class EditScreen extends Component {
             bounds="parent"
             // size={{ width: this.state.currWidth, height: this.state.currHeight }}
             // position={{ x: this.state.currX, y: this.state.currY }}
-            /*
-            onDragStart={(e, d) => { // original/default values
-                this.setState({ 
-                    eleX: element.props.default.x, 
-                    eleY: element.props.default.y 
-                });
-            }}
-            */
             onDragStop={(e, d) => { 
                 data.x = d.x;
                 data.y = d.y;
             }}
-            /*
             onResizeStop={(e, direction, ref, delta, position) => {
-                this.setState({
-                    width: ref.style.width,
-                    height: ref.style.height,
-                    ...position,
-                });
+                data.width = ref.style.width;
+                data.height = ref.style.height;
             }}
-            */
+            /*
             onClick={(e, d) => {
                 // most recently clicked?
                 // console.log(element);
                 // console.log(element.props.style);
                 // console.log(element.props.default);
                 // console.log(element.props.default.x);
-            }}
-            /*
-            onResizeStop={(e, direction, ref, delta, position) => {
-                this.setState({
-                    currWidth: ref.style.width,
-                    currHeight: ref.style.height,
-                    ...position
-                });
             }}
             */
         >
