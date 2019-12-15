@@ -198,11 +198,8 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label{
 
 .sandbox_wireframe { /* has zoom function */
   margin: auto;
-  /*
   margin-top: 1%;
   margin-bottom: 1%;
-  */
-  position: "relative";
   outline-style: solid;
   outline-width: 2px;
   transform-origin: top left;

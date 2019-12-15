@@ -86,6 +86,12 @@ class EditScreen extends Component {
         //}, function () { console.log(this.state.zoom); });
     }
 
+    zoomOut = () => {
+        this.setState({
+            zoom: this.state.zoom * 0.5
+        });
+    }
+
     /*
     confirmDeleteList = () => {
         const fireStore = getFirestore();
@@ -201,7 +207,7 @@ class EditScreen extends Component {
                 <div className="edit_options_right col s2">
                     <div className="edit_toolbar row red">
                         <div className="col" onClick={this.zoomIn}><i className="edit_toolbar_icon material-icons">zoom_in</i></div>
-                        <div className="col" onClick={""}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
+                        <div className="col" onClick={this.zoomOut}><i className="edit_toolbar_icon material-icons">zoom_out</i></div>
                         <div className="col">Save</div>
                         <div className="col">Close</div>
                     </div>
