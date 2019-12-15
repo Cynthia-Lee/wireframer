@@ -139,16 +139,16 @@ class EditScreen extends Component {
             "key": 0,
             "type": "container",
             "text": "testing1234",
-            "font-size": 12,
-            "background-color": "blue",
-            "font-color": "red",
-            "border-color": "yellow",
-            "border-thickness": 3,
-            "border-radius": 2, 
+            "fontSize": 12,
+            "backgroundColor": "blue",
+            "fontColor": "red",
+            "borderColor": "yellow",
+            "borderWidth": 3,
+            "borderRadius": 2, 
             "width": 100,
             "height": 300,
-            "posX": 22,
-            "posY": 30
+            "x": 22,
+            "y": 30
         */
         var type = data["type"];
         var pad = "";
@@ -202,44 +202,37 @@ class EditScreen extends Component {
                     currX: d.x, 
                     currY: d.y 
                 });
-                // element.props.style, default.x, defauly.y, default.width, default.height
                 // set items state with new data
+                // item, data
                 var newItems = this.state.items;
                 var index = -1;
-                // find the value in the items list
-                /*
-                // item
-                backgroundColor, borderColor, borderRadius, 
-                borderWidth, fontColor,
-                fontSize, height, key,
-                position, text, type, width, x, y
-                */ // exclude: key
-                // position, fontColor, borderStyle
-                /*
-                // element
-                backgroundColor, borderColor, borderRadius, 
-                borderStyle, 
-                borderWidth,
-                color, fontSize, paddingLeft, position, textAlign
-                */
-                // for(index = 0; index < this.state.items.length; index++) {
-                    var dict = this.state.items[0];
-                    // console.log(element.props.style);
-                    // console.log(dict["backgroundColor"]);
-                    // console.log(element.props.style.backgroundColor);
-                    for(var key in dict) {
-                        console.log(key);
+                var keys = Object.keys(data);
+                for(index = 0; index < this.state.items.length; index++) {
+                    var dict = this.state.items[index];
+                    var same = true;
+                    // console.log(dict["borderColor"]);
+                    // console.log(data["borderColor"]);
+                    for(var k = 0; k < keys.length; k++) {
+                        var key = keys[k];
                         // var value = dict[key];
-                        
+                        if (dict[key] != data[key]) {
+                            same = false;
+                        }
                     }
-                // }
+                    if (same) { // if same is still true
+                        // there is a match, found the item in items
+                        // console.log(index);
+                        data["x"] = d.x;
+                        data["y"] = d.y;
+                        // console.log(data);
+                        newItems[index] = data;
+                    }
+                }
+                // console.log(newItems[newItems.indexOf(data)]);
                 // console.log(newItems);
-
-                /*
                 this.setState({
-
+                    items: newItems
                 });
-                */
             }}
             /*
             onResizeStop={(e, d) => {
