@@ -14,21 +14,6 @@ class EditScreen extends Component {
         this.processCtrlD = this.processCtrlD.bind(this);
     }
 
-    processCtrlD(event){
-        if(event.ctrlKey && event.keyCode === 68) { // control & D
-            event.preventDefault();
-            
-        }
-    }
-    
-    componentDidMount(){
-        document.addEventListener("keydown", this.processCtrlD, false);
-    }
-    
-    componentWillUnmount(){
-        document.removeEventListener("keydown", this.processCtrlD, false);
-    }
-
     /* 
     "key": 1,
     "user": "6Ky2ocJRtPW6270wXJbLZAwRamH3",
@@ -52,23 +37,37 @@ class EditScreen extends Component {
         zoom: 1,
         
         currElement: ""
-        /*
-        // old values of element, size and position
-        eleWidth: "",
-        eleHeight: "",
-        eleX: "",
-        eleY: "",
-
-        // new values of the element, after move or drag
-        currWidth: "",
-        currHeight: "",
-        currX: "",
-        currY: ""
-        */
     }
     // seperating state and database wireframe
     // state will hold current changes, not changing database wireframe
     // only will change database wireframe after click "Save"
+
+    processCtrlD(event){
+        if(event.ctrlKey && event.keyCode === 68) { // control & D
+            event.preventDefault();
+            var copy = {};
+            // console.log(this.state.currElement);
+            for(var key in this.state.currElement)
+            {
+                copy[key] = this.state.currElement[key];
+            }
+            copy["x"] = copy["x"] + 100;
+            copy["y"] = copy["y"] + 100;
+            // console.log(copy);
+            this.state.items.push(copy);
+            this.setState({
+                currElement: copy
+            });
+        }
+    }
+    
+    componentDidMount(){
+        document.addEventListener("keydown", this.processCtrlD, false);
+    }
+    
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.processCtrlD, false);
+    }
 
     handleChange = (e) => {
         const { target } = e;
