@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import wireframeJson from './TestWireframerData.json'
 import { getFirestore } from 'redux-firestore';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class DatabaseTester extends React.Component {
 
@@ -16,6 +18,8 @@ class DatabaseTester extends React.Component {
                 fireStore.collection('wireframeList').doc(doc.id).delete();
             })
         });
+
+        console.log(this.props.users);
     }
 
     handleReset = () => {
@@ -50,8 +54,9 @@ class DatabaseTester extends React.Component {
 const mapStateToProps = function (state) {
     return {
         auth: state.firebase.auth,
-        firebase: state.firebase
+        firebase: state.firebase,
+        user: state.firebase.ordered.users
     };
 }
 
-export default connect(mapStateToProps)(DatabaseTester);
+export default compose(connect(mapStateToProps), firestoreConnect([{collection: "users"}]))(DatabaseTester);

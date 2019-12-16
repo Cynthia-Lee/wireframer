@@ -292,7 +292,7 @@ class EditScreen extends Component {
         return divItems;
     }
 
-    handleResize = () => {
+    handleControlMove = () => {
         this.setState(state => ({
             name: this.state.name
         }), function () { document.getElementById("sandbox_wireframe").click() });
@@ -361,6 +361,7 @@ class EditScreen extends Component {
             onDragStop={(e, d) => {
                 data.x = d.x;
                 data.y = d.y;
+                this.handleControlMove();
             }}
             onResizeStop={(e, direction, ref, delta, position) => {
                 data.width = ref.style.width;
@@ -368,7 +369,7 @@ class EditScreen extends Component {
                 // change position
                 data.x = position.x;
                 data.y = position.y;
-                this.handleResize();
+                this.handleControlMove();
             }}
             onClick={(e, d) => {
                 // most recently clicked?

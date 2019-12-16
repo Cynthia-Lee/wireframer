@@ -9,12 +9,13 @@ import RegisterScreen from './components/register_screen/RegisterScreen.js';
 import LoginScreen from './components/login_screen/LoginScreen.js';
 import HomeScreen from './components/home_screen/HomeScreen.js';
 import EditScreen from './components/edit_screen/EditScreen.js';
-import DatabaseTester from './test/DatabaseTester'
+import DatabaseTester from './test/DatabaseTester';
 
 class App extends Component {
   render() {
     const { auth } = this.props;
-
+    // console.log(auth);
+    // console.log(auth.admin);
     // if auth is loaded then we render App.
     // But if not then we doesn't render the one.
     if (auth.isLoaded) {
