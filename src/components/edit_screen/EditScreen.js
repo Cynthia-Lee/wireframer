@@ -135,10 +135,12 @@ class EditScreen extends Component {
         this.close();
     }
 
-    cancelClose = () => {
+    confirmSave = () => {
         this.setState({
             showModal: false
         });
+        this.save();
+        this.confirmClose();
     }
 
     handleChange = (e) => {
@@ -465,16 +467,18 @@ class EditScreen extends Component {
                         <Modal className="close_wireframe_modal" header="Close Wireframe?"
                             actions={
                                 <div class="close_wireframe_modal">
-                                    <div className="confirm_close_button modal-close waves-effect waves-light green btn-flat" onClick={this.confirmClose}><i className="material-icons left">check</i>Yes</div>
-                                    <div className="modal-close waves-effect waves-light red btn-flat" onClick={this.cancelClose}><i className="material-icons left">close</i>No</div>
+                                    <div className="confirm_close_button modal-close waves-effect waves-light green btn-flat" onClick={this.confirmSave}><i className="material-icons left">check</i>Yes</div>
+                                    <div className="modal-close waves-effect waves-light red btn-flat" onClick={this.confirmClose}><i className="material-icons left">close</i>No</div>
                                 </div>
                             }
                             // trigger={<button className="toolbar_button col" onClick={this.handleClose}>Close</button>} 
                             open={this.state.showModal}
                             options={{ dismissible: false }}>
                             <div class="close_wireframe_modal_content">
-                                <p>Are you sure you want to close this wireframe?</p>
-                                <p>Your recent changes will not be saved.</p>
+                                <p>Your recent changes are not saved.</p>
+                                <p>Do you want to save changes?</p>
+                                <p>Yes = save changes.</p>
+                                <p>No = don't save.</p>
                             </div>
                         </Modal>
 
