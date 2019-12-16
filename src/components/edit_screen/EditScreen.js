@@ -302,6 +302,10 @@ class EditScreen extends Component {
     }
 
     createItem = (data) => {
+        let selectedItem = false;
+        if (this.state.currElement == data) {
+            selectedItem = true;
+        }
         /*
             "key": 0,
             "type": "container",
@@ -319,7 +323,6 @@ class EditScreen extends Component {
         */
         var type = data["type"];
         var pad = "";
-        // console.log(data["position"]);
         var pos = data["position"] ? data["position"] : "";
         var textAlign = data["textAlign"] ? data["textAlign"] : "";
         if (type == "button") {
@@ -346,51 +349,109 @@ class EditScreen extends Component {
             paddingLeft: pad
         }
 
-        var element = <Rnd
-            id="control"
-            style={style}
-            /*
-            default={{
-                x: data["x"],
-                y: data["y"],
-                width: data["width"],
-                height: data["height"]
-            }}
-            */
-            bounds="parent"
-            size={{ width: data["width"], height: data["height"] }}
-            position={{ x: data.x, y: data.y }}
-            scale = {this.state.zoom}
-            onDragStop={(e, d) => {
-                data.x = d.x;
-                data.y = d.y;
-                this.handleControlMove();
-            }}
-            onResizeStop={(e, direction, ref, delta, position) => {
-                data.width = ref.style.width;
-                data.height = ref.style.height;
-                // change position
-                data.x = position.x;
-                data.y = position.y;
-                this.handleControlMove();
-            }}
-            onClick={(e, d) => {
-                // most recently clicked?
-                // data
-                this.setState({
-                    currElement: data,
-                    text: data.text,
-                    fontSize: data.fontSize,
-                    backgroundColor: data.backgroundColor,
-                    fontColor: data.fontColor,
-                    borderColor: data.borderColor,
-                    borderWidth: data.borderWidth,
-                    borderRadius: data.borderRadius
-                });
-            }}
-        >
-            {data["text"]}
-        </Rnd>
+        if (selectedItem) {
+            const styleResize = 
+                <div
+                    style={{
+                    background: "white",
+                    borderRadius: "1.5px",
+                    border: "1px solid black",
+                    height: "100%",
+                    width: "100%",
+                    padding: 0,
+                    }}
+                /> 
+
+            var element = <Rnd
+                id="control"
+                style={style}
+                bounds="parent"
+                size={{ width: data["width"], height: data["height"] }}
+                position={{ x: data.x, y: data.y }}
+                scale = {this.state.zoom}
+                onDragStop={(e, d) => {
+                    data.x = d.x;
+                    data.y = d.y;
+                    this.handleControlMove();
+                }}
+                onResizeStop={(e, direction, ref, delta, position) => {
+                    data.width = ref.style.width;
+                    data.height = ref.style.height;
+                    // change position
+                    data.x = position.x;
+                    data.y = position.y;
+                    this.handleControlMove();
+                }}
+                onClick={(e, d) => {
+                    // most recently clicked?
+                    // data
+                    this.setState({
+                        currElement: data,
+                        text: data.text,
+                        fontSize: data.fontSize,
+                        backgroundColor: data.backgroundColor,
+                        fontColor: data.fontColor,
+                        borderColor: data.borderColor,
+                        borderWidth: data.borderWidth,
+                        borderRadius: data.borderRadius
+                    });
+                }}
+                resizeHandleComponent={{bottomRight: styleResize, topLeft: styleResize, topRight: styleResize, bottomLeft: styleResize}}
+                enableResizing={{top: false, bottom: false, left: false, right: false, topLeft: true, topRight: true, bottomLeft: true, bottomRight: true}}
+            >
+                {data["text"]}
+            </Rnd>
+        } else { // not selected
+            var element = <Rnd
+                id="control"
+                style={style}
+                /*
+                default={{
+                    x: data["x"],
+                    y: data["y"],
+                    width: data["width"],
+                    height: data["height"]
+                }}
+                */
+                bounds="parent"
+                size={{ width: data["width"], height: data["height"] }}
+                position={{ x: data.x, y: data.y }}
+                scale = {this.state.zoom}
+                /*
+                onDragStop={(e, d) => {
+                    data.x = d.x;
+                    data.y = d.y;
+                    this.handleControlMove();
+                }}
+                onResizeStop={(e, direction, ref, delta, position) => {
+                    data.width = ref.style.width;
+                    data.height = ref.style.height;
+                    // change position
+                    data.x = position.x;
+                    data.y = position.y;
+                    this.handleControlMove();
+                }}
+                */
+                onClick={(e, d) => {
+                    // most recently clicked?
+                    // data
+                    this.setState({
+                        currElement: data,
+                        text: data.text,
+                        fontSize: data.fontSize,
+                        backgroundColor: data.backgroundColor,
+                        fontColor: data.fontColor,
+                        borderColor: data.borderColor,
+                        borderWidth: data.borderWidth,
+                        borderRadius: data.borderRadius
+                    });
+                }}
+                disableDragging
+                enableResizing={{top: false, bottom: false, left: false, right: false, topLeft: false, topRight: false, bottomLeft: false, bottomRight: false}}
+            >
+                {data["text"]}
+            </Rnd>
+        }
 
         return element;
     }
