@@ -15,6 +15,11 @@ class WireframeLinks extends React.Component {
         });
     }
 
+    deleteWireframe = (wireframe) => {
+        const wrireframeList = this.props.wireframeList;
+        
+    }
+
     render() {
         const wireframeList = this.props.wireframeList;
         const userId = this.props.auth.uid;
@@ -29,9 +34,14 @@ class WireframeLinks extends React.Component {
         return (
             <div className="todo-lists section">
                 {userWireframeList && userWireframeList.map(wireframe => (
-                    <Link to={'/wireframe/' + wireframe.id} onClick={() => this.updateTime(wireframe)} key={wireframe.id}>
-                        <WireframeCard wireframe={wireframe} />
-                    </Link>
+                    <div className="row">
+                        <div className="col s10">
+                            <Link to={'/wireframe/' + wireframe.id} onClick={() => this.updateTime(wireframe)} key={wireframe.id}>
+                                <WireframeCard wireframe={wireframe} />
+                            </Link>
+                        </div>
+                        <div className="card_delete_button col s2" onClick={() => this.deleteWireframe(wireframe)}><i className="edit_toolbar_icon card_delete_button material-icons">clear</i></div>
+                    </div>
                 ))}
             </div>
         );
