@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import WireframeCard from './WireframeCard';
 import { getFirestore } from 'redux-firestore';
+import { Modal} from 'react-materialize';
 
 class WireframeLinks extends React.Component {
     updateTime = (wireframe) => {
@@ -15,9 +16,9 @@ class WireframeLinks extends React.Component {
         });
     }
 
-    deleteWireframe = (wireframe) => {
-        const wrireframeList = this.props.wireframeList;
-        
+    confirmDeleteList = (wireframe) => {
+        const fireStore = getFirestore();
+        fireStore.collection('wireframeList').doc(wireframe.id).delete();
     }
 
     render() {
@@ -40,7 +41,22 @@ class WireframeLinks extends React.Component {
                                 <WireframeCard wireframe={wireframe} />
                             </Link>
                         </div>
-                        <div className="card_delete_button col s2" onClick={() => this.deleteWireframe(wireframe)}><i className="edit_toolbar_icon card_delete_button material-icons">clear</i></div>
+
+                        <Modal className="delete_list_modal" header="Delete Wireframe?"
+                            actions={
+                                <div class="delete_list_modal_footer">
+                                    <div className="confirm_delete_button modal-close waves-effect waves-light green btn-flat" onClick={() => this.confirmDeleteList(wireframe)}><i className="material-icons left">check</i>Yes</div>
+                                    <div className="modal-close waves-effect waves-light red btn-flat"><i className="material-icons left">close</i>No</div>
+                                </div>
+                            }
+                            trigger={<div className="card_delete_button col s2" onClick={""}><i className="edit_toolbar_icon card_delete_button material-icons">clear</i></div>} 
+                            options={{ dismissible: false }}>
+                            <div class="delete_list_modal_content">
+                                <p>Are you sure you want to delete the wireframe?</p>
+                                <p>The wireframe will not be retreivable.</p>
+                            </div>
+                        </Modal>
+
                     </div>
                 ))}
             </div>
