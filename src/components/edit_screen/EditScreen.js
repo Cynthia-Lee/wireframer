@@ -274,7 +274,7 @@ class EditScreen extends Component {
         return <div className="sandbox_wireframe" id="sandbox_wireframe" onClick={this.handleClick} style={{
             height: this.state.height + "px",
             width: this.state.width + "px",
-            // transform: "scale(" + this.state.zoom + ")"
+            transform: "scale(" + this.state.zoom + ")"
         }}>
             {this.initializeItems()}
         </div>
@@ -358,6 +358,7 @@ class EditScreen extends Component {
             bounds="parent"
             size={{ width: data["width"], height: data["height"] }}
             position={{ x: data.x, y: data.y }}
+            scale = {this.state.zoom}
             onDragStop={(e, d) => {
                 data.x = d.x;
                 data.y = d.y;
@@ -396,13 +397,13 @@ class EditScreen extends Component {
         // console.log("Zoomed in 2x");
         this.setState({
             zoom: this.state.zoom * 2
-        });
+        }, function () { document.getElementById("sandbox_wireframe").click() });
     }
-
+ 
     zoomOut = () => {
         this.setState({
             zoom: this.state.zoom * 0.5
-        });
+        }, function () { document.getElementById("sandbox_wireframe").click() });
     }
 
     save = () => {
